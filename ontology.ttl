@@ -156,6 +156,70 @@ xsd:date rdf:type rdfs:Datatype .
         rdfs:range :Film ;
         rdfs:label "sequel" .
 
+
+# Done a health-check and added missing properties and relations:
+### --- STRUCTURAL CLEANUP: MISSING OBJECT PROPERTIES --- ###
+
+# 1. Patching the Crew Disconnect
+:hasProducer rdf:type owl:ObjectProperty ;
+             rdfs:subPropertyOf :hasCrew ;
+             rdfs:domain :Film ;
+             rdfs:range :Producer ;
+             rdfs:label "hasProducer" .
+
+:hasCinematographer rdf:type owl:ObjectProperty ;
+                    rdfs:subPropertyOf :hasCrew ;
+                    rdfs:domain :Film ;
+                    rdfs:range :Cinematographer ;
+                    rdfs:label "hasCinematographer" .
+
+:hasEditor rdf:type owl:ObjectProperty ;
+           rdfs:subPropertyOf :hasCrew ;
+           rdfs:domain :Film ;
+           rdfs:range :Editor ;
+           rdfs:label "hasEditor" .
+
+:hasCostumeDesigner rdf:type owl:ObjectProperty ;
+                    rdfs:subPropertyOf :hasCrew ;
+                    rdfs:domain :Film ;
+                    rdfs:range :CostumeDesigner ;
+                    rdfs:label "hasCostumeDesigner" .
+
+# 2. Patching the Review Disconnect
+:reviewsArtwork rdf:type owl:ObjectProperty ;
+                rdfs:domain :Review ;
+                rdfs:range :Artwork ;
+                rdfs:label "reviewsArtwork" .
+
+# 3. Patching the Season Disconnect
+:hasSeason rdf:type owl:ObjectProperty ;
+           rdfs:domain :Series ;
+           rdfs:range :Season ;
+           rdfs:label "hasSeason" .
+
+:hasEpisode rdf:type owl:ObjectProperty ;
+            rdfs:domain :Season ;
+            rdfs:range :Episode ;
+            rdfs:label "hasEpisode" .
+
+# 4. Patching the Country Disconnect
+:availableInCountry rdf:type owl:ObjectProperty ;
+                    rdfs:domain :StreamingPlatform ;
+                    rdfs:range :Country ;
+                    rdfs:label "availableInCountry" .
+
+:hasOriginCountry rdf:type owl:ObjectProperty ;
+                  rdfs:domain :Artwork ;
+                  rdfs:range :Country ;
+                  rdfs:label "hasOriginCountry" .
+
+# (Making locatedIn Functional as discussed)
+:locatedIn rdf:type owl:ObjectProperty ,
+                    owl:FunctionalProperty ;
+           rdfs:domain :Subscriber ;
+           rdfs:range :Country ;
+           rdfs:label "locatedIn" .
+
 <http://xmlns.com/foaf/0.1/knows> rdf:type owl:ObjectProperty ;
                                   rdfs:domain <http://xmlns.com/foaf/0.1/Person> ;
                                   rdfs:range <http://xmlns.com/foaf/0.1/Person> .
