@@ -997,6 +997,205 @@ xsd:date rdf:type rdfs:Datatype .
              rdfs:label "USA" .
 
 
+###  http://semantics.id/ns/example/film#ep_arc_1
+:ep_arc_1 rdf:type owl:NamedIndividual ,
+                   :Episode ;
+          :nextEpisode :ep_arc_2 ;
+          rdfs:label "Welcome to the Playground" .
+
+
+###  http://semantics.id/ns/example/film#ep_arc_2
+:ep_arc_2 rdf:type owl:NamedIndividual ,
+                   :Episode ;
+          :nextEpisode :ep_arc_3 ;
+          rdfs:label "Some Mysteries Are Better Left Unsolved" .
+
+
+###  http://semantics.id/ns/example/film#ep_arc_3
+:ep_arc_3 rdf:type owl:NamedIndividual ,
+                   :Episode ;
+          :nextEpisode :ep_arc_4 ;
+          rdfs:label "The Base Violence Necessary for Change" .
+
+
+###  http://semantics.id/ns/example/film#ep_arc_4
+:ep_arc_4 rdf:type owl:NamedIndividual ,
+                   :Episode ;
+          :nextEpisode :ep_arc_5 ;
+          rdfs:label "Happy Progress Day!" .
+
+
+###  http://semantics.id/ns/example/film#ep_arc_5
+:ep_arc_5 rdf:type owl:NamedIndividual ,
+                   :Episode ;
+          :nextEpisode :ep_arc_6 ;
+          rdfs:label "Everybody Wants to Be My Enemy" .
+
+
+###  http://semantics.id/ns/example/film#ep_arc_6
+:ep_arc_6 rdf:type owl:NamedIndividual ,
+                   :Episode ;
+          :nextEpisode :ep_arc_7 ;
+          rdfs:label "When These Walls Come Tumbling Down" .
+
+
+###  http://semantics.id/ns/example/film#ep_arc_7
+:ep_arc_7 rdf:type owl:NamedIndividual ,
+                   :Episode ;
+          :nextEpisode :ep_arc_8 ;
+          rdfs:label "The Boy Savior" .
+
+
+###  http://semantics.id/ns/example/film#ep_arc_8
+:ep_arc_8 rdf:type owl:NamedIndividual ,
+                   :Episode ;
+          :nextEpisode :ep_arc_9 ;
+          rdfs:label "Oil and Water" .
+
+
+###  http://semantics.id/ns/example/film#ep_arc_9
+:ep_arc_9 rdf:type owl:NamedIndividual ,
+                   :Episode ;
+          rdfs:label "The Monster You Created" .
+
+
+###  http://semantics.id/ns/example/film#ep_bcs_101
+:ep_bcs_101 rdf:type owl:NamedIndividual ,
+                     :Episode ;
+            :nextEpisode :ep_bcs_102 ;
+            rdfs:label "Uno" .
+
+
+###  http://semantics.id/ns/example/film#ep_bcs_102
+:ep_bcs_102 rdf:type owl:NamedIndividual ,
+                     :Episode ;
+            :nextEpisode :ep_bcs_103 ;
+            rdfs:label "Mijo" .
+
+
+###  http://semantics.id/ns/example/film#ep_bcs_103
+:ep_bcs_103 rdf:type owl:NamedIndividual ,
+                     :Episode ;
+            :nextEpisode :ep_bcs_104 ;
+            rdfs:label "Nacho" .
+
+
+###  http://semantics.id/ns/example/film#ep_bcs_104
+:ep_bcs_104 rdf:type owl:NamedIndividual ,
+                     :Episode ;
+            :nextEpisode :ep_bcs_105 ;
+            rdfs:label "Hero" .
+
+
+###  http://semantics.id/ns/example/film#ep_bcs_105
+:ep_bcs_105 rdf:type owl:NamedIndividual ,
+                     :Episode ;
+            :nextEpisode :ep_bcs_106 ;
+            rdfs:label "Alpine Shepherd Boy" .
+
+
+###  http://semantics.id/ns/example/film#ep_bcs_106
+:ep_bcs_106 rdf:type owl:NamedIndividual ,
+                     :Episode ;
+            :nextEpisode :ep_bcs_107 ;
+            rdfs:label "Five-O" .
+
+
+###  http://semantics.id/ns/example/film#ep_bcs_107
+:ep_bcs_107 rdf:type owl:NamedIndividual ,
+                     :Episode ;
+            :nextEpisode :ep_bcs_108 ;
+            rdfs:label "Bingo" .
+
+
+###  http://semantics.id/ns/example/film#ep_bcs_108
+:ep_bcs_108 rdf:type owl:NamedIndividual ,
+                     :Episode ;
+            :nextEpisode :ep_bcs_109 ;
+            rdfs:label "RICO" .
+
+
+###  http://semantics.id/ns/example/film#ep_bcs_109
+:ep_bcs_109 rdf:type owl:NamedIndividual ,
+                     :Episode ;
+            :nextEpisode :ep_bcs_110 ;
+            rdfs:label "Pimento" .
+
+
+###  http://semantics.id/ns/example/film#ep_bcs_110
+:ep_bcs_110 rdf:type owl:NamedIndividual ,
+                     :Episode ;
+            rdfs:label "Marco" .
+
+
+###  http://semantics.id/ns/example/film#ep_cher_1
+:ep_cher_1 rdf:type owl:NamedIndividual ,
+                    :Episode ;
+           :nextEpisode :ep_cher_2 ;
+           rdfs:label "1:23:45" .
+
+
+###  http://semantics.id/ns/example/film#ep_cher_2
+:ep_cher_2 rdf:type owl:NamedIndividual ,
+                    :Episode ;
+           :nextEpisode :ep_cher_3 ;
+           rdfs:label "Please Remain Calm" .
+
+
+###  http://semantics.id/ns/example/film#ep_cher_3
+:ep_cher_3 rdf:type owl:NamedIndividual ,
+                    :Episode ;
+           :nextEpisode :ep_cher_4 ;
+           rdfs:label "Open Wide O Earth" .
+
+
+###  http://semantics.id/ns/example/film#ep_cher_4
+:ep_cher_4 rdf:type owl:NamedIndividual ,
+                    :Episode ;
+           :nextEpisode :ep_cher_5 ;
+           rdfs:label "The Happiness of All Mankind" .
+
+
+###  http://semantics.id/ns/example/film#ep_cher_5
+:ep_cher_5 rdf:type owl:NamedIndividual ,
+                    :Episode ;
+           rdfs:label "Vichnaya Pamyat" .
+
+
+###  http://semantics.id/ns/example/film#ep_mh_1
+:ep_mh_1 rdf:type owl:NamedIndividual ,
+                  :Episode ;
+         :nextEpisode :ep_mh_2 ;
+         rdfs:label "Efectuar lo acordado" .
+
+
+###  http://semantics.id/ns/example/film#ep_mh_2
+:ep_mh_2 rdf:type owl:NamedIndividual ,
+                  :Episode ;
+         :nextEpisode :ep_mh_3 ;
+         rdfs:label "Imprudencias letales" .
+
+
+###  http://semantics.id/ns/example/film#ep_mh_3
+:ep_mh_3 rdf:type owl:NamedIndividual ,
+                  :Episode ;
+         :nextEpisode :ep_mh_4 ;
+         rdfs:label "Error de disparo" .
+
+
+###  http://semantics.id/ns/example/film#ep_mh_4
+:ep_mh_4 rdf:type owl:NamedIndividual ,
+                  :Episode ;
+         :nextEpisode :ep_mh_5 ;
+         rdfs:label "Caballo de Troya" .
+
+
+###  http://semantics.id/ns/example/film#ep_mh_5
+:ep_mh_5 rdf:type owl:NamedIndividual ,
+                  :Episode ;
+         rdfs:label "El dia de la marmota" .
+
+
 ###  http://semantics.id/ns/example/film#genre_action
 :genre_action rdf:type owl:NamedIndividual ,
                        :Genre ;
@@ -1045,6 +1244,110 @@ xsd:date rdf:type rdfs:Datatype .
                  :dateOfBirth "1959-02-22"^^xsd:date ;
                  :fullName "Kyle Merritt MacLachlan" ;
                  :gender "male" .
+
+
+###  http://semantics.id/ns/example/film#movie_432
+:movie_432 rdf:type owl:NamedIndividual ,
+                    :Film ;
+           :hasGenre :genre_drama ;
+           :hasOriginCountry :country_romania ;
+           rdfs:label "4 Months 3 Weeks and 2 Days" .
+
+
+###  http://semantics.id/ns/example/film#movie_barbie
+:movie_barbie rdf:type owl:NamedIndividual ,
+                       :Film ;
+              :hasGenre :genre_family ;
+              :hasOriginCountry :country_usa ;
+              rdfs:label "Barbie" .
+
+
+###  http://semantics.id/ns/example/film#movie_chuck
+:movie_chuck rdf:type owl:NamedIndividual ,
+                      :Film ;
+             :hasGenre :genre_action ;
+             :hasOriginCountry :country_romania ;
+             rdfs:label "Chuck Norris vs Communism" .
+
+
+###  http://semantics.id/ns/example/film#movie_colectiv
+:movie_colectiv rdf:type owl:NamedIndividual ,
+                         :Film ;
+                :hasGenre :genre_drama ;
+                :hasOriginCountry :country_romania ;
+                rdfs:label "Collective" .
+
+
+###  http://semantics.id/ns/example/film#movie_dark_knight
+:movie_dark_knight rdf:type owl:NamedIndividual ,
+                            :Film ;
+                   :hasGenre :genre_action ;
+                   :hasOriginCountry :country_usa ;
+                   rdfs:label "The Dark Knight" .
+
+
+###  http://semantics.id/ns/example/film#movie_dune_2
+:movie_dune_2 rdf:type owl:NamedIndividual ,
+                       :Film ;
+              :hasGenre :genre_science_fiction ;
+              :hasOriginCountry :country_usa ;
+              rdfs:label "Dune: Part Two" .
+
+
+###  http://semantics.id/ns/example/film#movie_gladiator
+:movie_gladiator rdf:type owl:NamedIndividual ,
+                          :Film ;
+                 :hasGenre :genre_action ;
+                 :hasOriginCountry :country_uk ;
+                 rdfs:label "Gladiator" .
+
+
+###  http://semantics.id/ns/example/film#movie_inception
+:movie_inception rdf:type owl:NamedIndividual ,
+                          :Film ;
+                 :hasGenre :genre_science_fiction ;
+                 :hasOriginCountry :country_usa ;
+                 rdfs:label "Inception" .
+
+
+###  http://semantics.id/ns/example/film#movie_interstellar
+:movie_interstellar rdf:type owl:NamedIndividual ,
+                             :Film ;
+                    :hasGenre :genre_science_fiction ;
+                    :hasOriginCountry :country_usa ;
+                    rdfs:label "Interstellar" .
+
+
+###  http://semantics.id/ns/example/film#movie_matrix
+:movie_matrix rdf:type owl:NamedIndividual ,
+                       :Film ;
+              :hasGenre :genre_science_fiction ;
+              :hasOriginCountry :country_usa ;
+              rdfs:label "The Matrix" .
+
+
+###  http://semantics.id/ns/example/film#movie_oppenheimer
+:movie_oppenheimer rdf:type owl:NamedIndividual ,
+                            :Film ;
+                   :hasGenre :genre_drama ;
+                   :hasOriginCountry :country_usa ;
+                   rdfs:label "Oppenheimer" .
+
+
+###  http://semantics.id/ns/example/film#movie_parasite
+:movie_parasite rdf:type owl:NamedIndividual ,
+                         :Film ;
+                :hasGenre :genre_drama ;
+                :hasOriginCountry :country_japan ;
+                rdfs:label "Parasite" .
+
+
+###  http://semantics.id/ns/example/film#movie_spirited
+:movie_spirited rdf:type owl:NamedIndividual ,
+                         :Film ;
+                :hasGenre :genre_animation ;
+                :hasOriginCountry :country_japan ;
+                rdfs:label "Spirited Away" .
 
 
 ###  http://semantics.id/ns/example/film#plan_dis_basic
@@ -1207,6 +1510,95 @@ xsd:date rdf:type rdfs:Datatype .
                             :plan_prime_prem ;
                 :platformURL "www.amazon.com/video" ;
                 rdfs:label "Prime Video" .
+
+
+###  http://semantics.id/ns/example/film#season_arc_1
+:season_arc_1 rdf:type owl:NamedIndividual ,
+                       :Season ;
+              :hasEpisode :ep_arc_1 ,
+                          :ep_arc_2 ,
+                          :ep_arc_3 ,
+                          :ep_arc_4 ,
+                          :ep_arc_5 ,
+                          :ep_arc_6 ,
+                          :ep_arc_7 ,
+                          :ep_arc_8 ,
+                          :ep_arc_9 ;
+              rdfs:label "Arcane: Season 1" .
+
+
+###  http://semantics.id/ns/example/film#season_bcs_1
+:season_bcs_1 rdf:type owl:NamedIndividual ,
+                       :Season ;
+              :hasEpisode :ep_bcs_101 ,
+                          :ep_bcs_102 ,
+                          :ep_bcs_103 ,
+                          :ep_bcs_104 ,
+                          :ep_bcs_105 ,
+                          :ep_bcs_106 ,
+                          :ep_bcs_107 ,
+                          :ep_bcs_108 ,
+                          :ep_bcs_109 ,
+                          :ep_bcs_110 ;
+              rdfs:label "BCS: Season 1" .
+
+
+###  http://semantics.id/ns/example/film#season_chernobyl_1
+:season_chernobyl_1 rdf:type owl:NamedIndividual ,
+                             :Season ;
+                    :hasEpisode :ep_cher_1 ,
+                                :ep_cher_2 ,
+                                :ep_cher_3 ,
+                                :ep_cher_4 ,
+                                :ep_cher_5 ;
+                    rdfs:label "Chernobyl: Season 1" .
+
+
+###  http://semantics.id/ns/example/film#season_mh_1
+:season_mh_1 rdf:type owl:NamedIndividual ,
+                      :Season ;
+             :hasEpisode :ep_mh_1 ,
+                         :ep_mh_2 ,
+                         :ep_mh_3 ,
+                         :ep_mh_4 ,
+                         :ep_mh_5 ;
+             rdfs:label "Money Heist: Part 1" .
+
+
+###  http://semantics.id/ns/example/film#series_arcane
+:series_arcane rdf:type owl:NamedIndividual ,
+                        :Series ;
+               :hasGenre :genre_animation ;
+               :hasOriginCountry :country_usa ;
+               :hasSeason :season_arc_1 ;
+               rdfs:label "Arcane" .
+
+
+###  http://semantics.id/ns/example/film#series_bcs
+:series_bcs rdf:type owl:NamedIndividual ,
+                     :Series ;
+            :hasGenre :genre_drama ;
+            :hasOriginCountry :country_usa ;
+            :hasSeason :season_bcs_1 ;
+            rdfs:label "Better Call Saul" .
+
+
+###  http://semantics.id/ns/example/film#series_chernobyl
+:series_chernobyl rdf:type owl:NamedIndividual ,
+                           :Miniseries ;
+                  :hasGenre :genre_drama ;
+                  :hasOriginCountry :country_uk ;
+                  :hasSeason :season_chernobyl_1 ;
+                  rdfs:label "Chernobyl" .
+
+
+###  http://semantics.id/ns/example/film#series_mh
+:series_mh rdf:type owl:NamedIndividual ,
+                    :Series ;
+           :hasGenre :genre_action ;
+           :hasOriginCountry :country_spain ;
+           :hasSeason :season_mh_1 ;
+           rdfs:label "Money Heist" .
 
 
 ###  http://semantics.id/ns/example/film#zendaya

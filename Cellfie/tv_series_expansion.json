@@ -1,0 +1,64 @@
+{
+    "Collections": [
+        {
+            "sheetName": "tv_series_expansion",
+            "startColumn": "A",
+            "endColumn": "A",
+            "startRow": "2",
+            "endRow": "+",
+            "comment": "",
+            "rule": "Individual: @A*\nFacts:\n  hasOriginCountry @D*(mm:SkipIfEmptyLocation)",
+            "active": true
+        },
+        {
+            "sheetName": "tv_series_expansion",
+            "startColumn": "A",
+            "endColumn": "A",
+            "startRow": "2",
+            "endRow": "+",
+            "comment": "",
+            "rule": "Individual: @G*(mm:SkipIfEmptyLocation)\nFacts:\n  hasEpisode @A*",
+            "active": true
+        },
+        {
+            "sheetName": "tv_series_expansion",
+            "startColumn": "A",
+            "endColumn": "A",
+            "startRow": "2",
+            "endRow": "+",
+            "comment": "",
+            "rule": "Individual: @A*\nFacts:\n  hasGenre @E*(mm:SkipIfEmptyLocation)",
+            "active": true
+        },
+        {
+            "sheetName": "tv_series_expansion",
+            "startColumn": "A",
+            "endColumn": "A",
+            "startRow": "2",
+            "endRow": "+",
+            "comment": "",
+            "rule": "Individual: @F*(mm:SkipIfEmptyLocation)\nFacts:\n  hasSeason @A*",
+            "active": true
+        },
+        {
+            "sheetName": "tv_series_expansion",
+            "startColumn": "A",
+            "endColumn": "A",
+            "startRow": "2",
+            "endRow": "+",
+            "comment": "",
+            "rule": "Individual: @A*\nTypes: @C*\nAnnotations:\n  rdfs:label @B*",
+            "active": true
+        },
+        {
+            "sheetName": "tv_series_expansion",
+            "startColumn": "A",
+            "endColumn": "A",
+            "startRow": "2",
+            "endRow": "+",
+            "comment": "",
+            "rule": "Individual: @A*\nFacts:\n  nextEpisode @H*(mm:SkipIfEmptyLocation)",
+            "active": true
+        }
+    ]
+}
