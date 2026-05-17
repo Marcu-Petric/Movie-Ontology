@@ -1,0 +1,69 @@
+\documentclass[a4paper,12pt]{report}
+\makeatletter
+\def\input@path{{.support/}}
+\makeatother
+\usepackage{algorithmic}
+\usepackage[linesnumbered,ruled,vlined]{algorithm2e}
+\usepackage[margin=2cm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage{listings} 
+\usepackage{graphicx} 
+\graphicspath{{.support/}{.support/fig/}}
+\usepackage{color}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{verbatim}
+%\usepackage{mdframed}
+
+\newcommand{\currentdata}{14 February 2015}
+\newtheorem{example}{Example}
+
+\begin{document}
+\vspace{-5cm}
+\begin{center}
+Department of Computer Science\\
+Technical University of Cluj-Napoca\\
+\includegraphics[width=10cm]{fig/footer}
+\end{center}
+\vspace{1cm}
+%\maketitle
+\begin{center}
+\begin{Large}
+ \textbf{Knowledge Based Systems}\\
+\end{Large}
+\textit{Laboratory activity}\\
+\vspace{3cm}
+Name: Marcu Cristian Petric\\
+Group: 30441\\
+Email: marcupetric10@gmail.com\\
+\vspace{12cm}
+Teaching Assistant: Marius Adrian Stoica\\
+Stoica.Ma.Marius@student.utcluj.ro\\
+\vspace{1cm}
+\includegraphics[width=10cm]{fig/footer}
+\end{center}
+
+\tableofcontents
+
+\input{policy}
+
+%\chapter{Laboratory works}
+
+\input{01-determine-scope}
+\input{02-consider-reuse}
+\input{03-enumerate-important-terms}
+\input{04-define-classes}
+\input{05-define-roles}
+\input{06-role-constraints}
+\input{07-create-instances}
+\input{08-check-for-anomalies}
+\input{09-ontology-evaluation}
+
+\bibliographystyle{plain}
+\bibliography{is}
+
+\appendix
+
+\input{10-your-code}
+
+\end{document}

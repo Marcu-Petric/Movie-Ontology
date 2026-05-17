@@ -1,0 +1,38 @@
+{
+  "latex-workshop.latex.autoBuild.run": "onSave",
+  "latex-workshop.latex.recipe.default": "latexmk -> copy pdf",
+  "latex-workshop.latex.recipes": [
+    {
+      "name": "latexmk -> copy pdf",
+      "tools": ["latexmk (hidden build)", "copy pdf to root"]
+    }
+  ],
+  "latex-workshop.latex.tools": [
+    {
+      "name": "latexmk (hidden build)",
+      "command": "latexmk",
+      "args": [
+        "-pdf",
+        "-interaction=nonstopmode",
+        "-synctex=1",
+        "-file-line-error",
+        "-halt-on-error",
+        "-outdir=%OUTDIR%",
+        "%DOC%"
+      ]
+    },
+    {
+      "name": "copy pdf to root",
+      "command": "powershell",
+      "args": [
+        "-NoProfile",
+        "-Command",
+        "Copy-Item -Force '%OUTDIR%\\%DOCFILE%.pdf' '%DIR%\\%DOCFILE%.pdf'"
+      ]
+    }
+  ],
+  "latex-workshop.latex.outDir": "%DIR%/build",
+  "latex-workshop.latex.rootFile.doNotPrompt": true,
+  "latex-workshop.view.pdf.viewer": "tab",
+  "latex-workshop.view.pdf.forwardSearch.executable": "internal"
+}

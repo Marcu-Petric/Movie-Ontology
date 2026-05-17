@@ -1,0 +1,72 @@
+\chapter{Define Roles}
+
+\textbf{Object properties (relations between classes) - Total: 21}
+\begin{itemize}
+    \item \texttt{hasActor} (Film $\rightarrow$ Actor) \textit{(Base)}
+    \item \texttt{hasDirector} (Film $\rightarrow$ Director) \textit{(Base)}
+    \item \texttt{hasCrew} (Film $\rightarrow$ Person) \textit{(Base)}
+    \item \texttt{hasComposer} (Film $\rightarrow$ Composer) \textit{(Base)}
+    \item \texttt{hasScriptWriter} (Film $\rightarrow$ ScriptWriter) \textit{(Base)}
+    \item \texttt{hasPerformer} (Artwork $\rightarrow$ Performer) \textit{(Base)}
+    \item \texttt{hasGenre} (Film $\rightarrow$ Genre) \textit{(Base)}
+    \item \texttt{hasFilmStudio} (Film $\rightarrow$ FilmStudio) \textit{(Base)}
+    \item \texttt{hasSoundtrack} (Film $\rightarrow$ Soundtrack) \textit{(Base)}
+    \item \texttt{prequel} (Film $\rightarrow$ Film) \textit{(Base)}
+    \item \texttt{sequel} (Film $\rightarrow$ Film) \textit{(Base)}
+    \item \texttt{friendOf} (Person $\rightarrow$ Person) \textit{(Base)}
+    \item \texttt{knows} (Person $\rightarrow$ Person) \textit{(Base)}
+    \item \texttt{watched} (Subscriber $\rightarrow$ Artwork) \textit{(New)}
+    \item \texttt{likes} (Subscriber $\rightarrow$ Artwork) \textit{(New)}
+    \item \texttt{availableOn} (Artwork $\rightarrow$ StreamingPlatform) \textit{(New)}
+    \item \texttt{belongsToSeries} (Episode $\rightarrow$ Series) \textit{(New)}
+    \item \texttt{hasPlan} (Subscriber $\rightarrow$ SubscriptionPlan) \textit{(New)}
+    \item \texttt{subscribedTo} (Subscriber $\rightarrow$ StreamingPlatform) \textit{(New)}
+    \item \texttt{hasAgeRating} (Artwork $\rightarrow$ AgeRating) \textit{(New)}
+    \item \texttt{hasAward} (Artwork $\rightarrow$ Award) \textit{(New)}
+\end{itemize}
+
+\vspace{0.5cm}
+\noindent\textbf{Data properties (attributes) - Total: 20}
+\begin{itemize}
+    \item \texttt{budget} (Film $\rightarrow$ float) \textit{(Base)}
+    \item \texttt{dateOfBirth} (Person $\rightarrow$ date) \textit{(Base)}
+    \item \texttt{duration} (Artwork $\rightarrow$ float) \textit{(Base)}
+    \item \texttt{establishedDate} (FilmStudio $\rightarrow$ date) \textit{(Base)}
+    \item \texttt{fullName} (Person $\rightarrow$ string) \textit{(Base)}
+    \item \texttt{gender} (Person $\rightarrow$ string) \textit{(Base)}
+    \item \texttt{releaseYear} (Film $\rightarrow$ integer) \textit{(Base)}
+    \item \texttt{subscriberAge} (Subscriber $\rightarrow$ integer) \textit{(New)}
+    \item \texttt{imdbRating} (Artwork $\rightarrow$ decimal) \textit{(New)}
+    \item \texttt{subscriptionCost} (SubscriptionPlan $\rightarrow$ decimal) \textit{(New)}
+    \item \texttt{episodeNumber} (Episode $\rightarrow$ integer) \textit{(New)}
+    \item \texttt{seasonNumber} (Season $\rightarrow$ integer) \textit{(New)}
+    \item \texttt{synopsis} (Artwork $\rightarrow$ string) \textit{(New)}
+    \item \texttt{originalLanguage} (Artwork $\rightarrow$ string) \textit{(New)}
+    \item \texttt{maxSimultaneousStreams} (SubscriptionPlan $\rightarrow$ integer) \textit{(New)}
+    \item \texttt{platformURL} (StreamingPlatform $\rightarrow$ string) \textit{(New)}
+    \item \texttt{hasAds} (SubscriptionPlan $\rightarrow$ boolean) \textit{(New)}
+    \item \texttt{registrationDate} (Subscriber $\rightarrow$ date) \textit{(New)}
+    \item \texttt{awardYear} (Award $\rightarrow$ integer) \textit{(New)}
+    \item \texttt{reviewScore} (Review $\rightarrow$ integer) \textit{(New)}
+\end{itemize}
+
+\vspace{0.5cm}
+\noindent\textbf{Annotation properties:}
+\begin{itemize}
+    \item \texttt{rdfs:label} (Used for human-readable naming)
+    \item \texttt{dc:creator} (Used to track who created the ontology)
+    \item \texttt{rdfs:comment} (Used for adding descriptions to new classes)
+\end{itemize}
+
+\section*{Stage 5 Extension: Advanced Role Characteristics}
+To fulfill the logical constraints of the ontology and map the complex relationships within a streaming platform ecosystem, we defined specific use-cases for the advanced OWL relation characteristics:
+
+\begin{itemize}
+    \item \textbf{Functional Property:} \texttt{hasAgeRating} (Artwork $\rightarrow$ AgeRating). A specific piece of artwork can only hold one official age classification.
+    \item \textbf{Inverse Functional Property:} \texttt{wroteReview} (Subscriber $\rightarrow$ Review). A specific review can uniquely identify its author; a single review cannot be authored by two distinct subscribers.
+    \item \textbf{Transitive Property:} \texttt{sequel} (Film $\rightarrow$ Film). If Film C is a sequel to Film B, and Film B is a sequel to Film A, the reasoner infers that Film C is in the sequel lineage of Film A.
+    \item \textbf{Symmetric Property:} \texttt{coStarredWith} (Actor $\rightarrow$ Actor). If Actor A co-starred with Actor B, then Actor B automatically co-starred with Actor A.
+    \item \textbf{Asymmetric Property:} \texttt{nextEpisode} (Episode $\rightarrow$ Episode). If Episode 2 follows Episode 1, it is mathematically impossible for Episode 1 to follow Episode 2.
+    \item \textbf{Reflexive Property:} \texttt{inSameUniverse} (Artwork $\rightarrow$ Artwork). By default, every piece of artwork exists within the same cinematic universe as itself.
+    \item \textbf{Irreflexive Property:} \texttt{recommendsTo} (Subscriber $\rightarrow$ Subscriber). A subscriber can recommend content to other users on the platform, but cannot logically send a recommendation to themselves.
+\end{itemize}

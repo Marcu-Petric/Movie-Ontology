@@ -13,50 +13,31 @@
                                                                               "Marta Sabou" ;
                                        <http://purl.org/dc/terms/created> "2022-09-30" ;
                                        <http://purl.org/dc/terms/creator> "Fajar J. Ekaputra" ;
-                                       <http://purl.org/dc/terms/description> "An ontology about film and related concepts developed for ISS course at TU Wien." ;
-                                       <http://purl.org/dc/terms/title> "The Film Ontology" .
+                                       <http://purl.org/dc/terms/description> "An ontology about film and related concepts developed for ISS course at TU Wien. Extended to include Streaming Platforms, Subscriptions, and Awards." ;
+                                       <http://purl.org/dc/terms/title> "The Extended Streaming Film Ontology" .
 
 #################################################################
 #    Annotation properties
 #################################################################
 
-###  http://purl.org/dc/terms/contributor
 <http://purl.org/dc/terms/contributor> rdf:type owl:AnnotationProperty .
-
-
-###  http://purl.org/dc/terms/created
 <http://purl.org/dc/terms/created> rdf:type owl:AnnotationProperty .
-
-
-###  http://purl.org/dc/terms/creator
 <http://purl.org/dc/terms/creator> rdf:type owl:AnnotationProperty .
-
-
-###  http://purl.org/dc/terms/description
 <http://purl.org/dc/terms/description> rdf:type owl:AnnotationProperty .
-
-
-###  http://purl.org/dc/terms/title
 <http://purl.org/dc/terms/title> rdf:type owl:AnnotationProperty .
-
-
-###  http://www.w3.org/2002/07/owl#minCardinality
 owl:minCardinality rdf:type owl:AnnotationProperty .
-
 
 #################################################################
 #    Datatypes
 #################################################################
 
-###  http://www.w3.org/2001/XMLSchema#date
 xsd:date rdf:type rdfs:Datatype .
-
 
 #################################################################
 #    Object Properties
 #################################################################
 
-###  http://semantics.id/ns/example/film#friendOf
+### Base Properties
 :friendOf rdf:type owl:ObjectProperty ;
           rdfs:subPropertyOf <http://xmlns.com/foaf/0.1/knows> ;
           rdf:type owl:SymmetricProperty ;
@@ -64,8 +45,6 @@ xsd:date rdf:type rdfs:Datatype .
           rdfs:range <http://xmlns.com/foaf/0.1/Person> ;
           rdfs:label "friendOf" .
 
-
-###  http://semantics.id/ns/example/film#hasActor
 :hasActor rdf:type owl:ObjectProperty ;
           rdfs:subPropertyOf :hasPerformer ;
           rdfs:domain :Film ;
@@ -73,23 +52,17 @@ xsd:date rdf:type rdfs:Datatype .
           rdfs:label "hasActor" ;
           owl:minCardinality 1 .
 
-
-###  http://semantics.id/ns/example/film#hasComposer
 :hasComposer rdf:type owl:ObjectProperty ;
              rdfs:subPropertyOf :hasCrew ;
              rdfs:domain :Film ;
              rdfs:range :Composer ;
              rdfs:label "hasComposer" .
 
-
-###  http://semantics.id/ns/example/film#hasCrew
 :hasCrew rdf:type owl:ObjectProperty ;
          rdfs:domain :Film ;
          rdfs:range <http://xmlns.com/foaf/0.1/Person> ;
          rdfs:label "hasCrew" .
 
-
-###  http://semantics.id/ns/example/film#hasDirector
 :hasDirector rdf:type owl:ObjectProperty ;
              rdfs:subPropertyOf :hasCrew ;
              rdfs:domain :Film ;
@@ -97,31 +70,23 @@ xsd:date rdf:type rdfs:Datatype .
              rdfs:label "hasDirector" ;
              owl:minCardinality 1 .
 
-
-###  http://semantics.id/ns/example/film#hasFilmStudio
 :hasFilmStudio rdf:type owl:ObjectProperty ;
                rdfs:domain :Film ;
                rdfs:range :FilmStudio ;
                rdfs:label "hasFilmStudio" ;
                owl:minCardinality 1 .
 
-
-###  http://semantics.id/ns/example/film#hasGenre
 :hasGenre rdf:type owl:ObjectProperty ;
           rdfs:domain :Film ;
           rdfs:range :Genre ;
           rdfs:label "hasGenre" ;
           owl:minCardinality 1 .
 
-
-###  http://semantics.id/ns/example/film#hasPerformer
 :hasPerformer rdf:type owl:ObjectProperty ;
               rdfs:domain :Artwork ;
               rdfs:range :Performer ;
               rdfs:label "hasPerformer" .
 
-
-###  http://semantics.id/ns/example/film#hasScriptWriter
 :hasScriptWriter rdf:type owl:ObjectProperty ;
                  rdfs:subPropertyOf :hasCrew ;
                  rdfs:domain :Film ;
@@ -129,15 +94,55 @@ xsd:date rdf:type rdfs:Datatype .
                  rdfs:label "hasScriptWriter" ;
                  owl:minCardinality 1 .
 
-
-###  http://semantics.id/ns/example/film#hasSoundtrack
 :hasSoundtrack rdf:type owl:ObjectProperty ;
                rdfs:domain :Film ;
                rdfs:range :Soundtrack ;
                rdfs:label "hasSoundtrack" .
 
+# 1. Functional (Replacing the old hasAgeRating)
+:hasAgeRating rdf:type owl:ObjectProperty , 
+                       owl:FunctionalProperty ; 
+              rdfs:domain :Artwork ; 
+              rdfs:range :AgeRating ; 
+              rdfs:label "hasAgeRating" .
 
-###  http://semantics.id/ns/example/film#prequel
+# 2. Inverse Functional
+:wroteReview rdf:type owl:ObjectProperty , 
+                      owl:InverseFunctionalProperty ; 
+             rdfs:domain :Subscriber ; 
+             rdfs:range :Review ; 
+             rdfs:label "wroteReview" .
+
+# 3. Symmetric
+:coStarredWith rdf:type owl:ObjectProperty , 
+                        owl:SymmetricProperty ; 
+               rdfs:domain :Actor ; 
+               rdfs:range :Actor ; 
+               rdfs:label "coStarredWith" .
+
+# 4. Asymmetric
+:nextEpisode rdf:type owl:ObjectProperty , 
+                      owl:AsymmetricProperty ; 
+             rdfs:domain :Episode ; 
+             rdfs:range :Episode ; 
+             rdfs:label "nextEpisode" .
+
+# 5. Reflexive
+:inSameUniverse rdf:type owl:ObjectProperty , 
+                         owl:ReflexiveProperty ; 
+                rdfs:domain :Artwork ; 
+                rdfs:range :Artwork ; 
+                rdfs:label "inSameUniverse" .
+
+# 6. Irreflexive
+:recommendsTo rdf:type owl:ObjectProperty , 
+                       owl:IrreflexiveProperty ; 
+              rdfs:domain :Subscriber ; 
+              rdfs:range :Subscriber ; 
+              rdfs:label "recommendsTo" .
+
+# Note: :sequel (Transitive) is already defined natively in the TU Wien base code.
+
 :prequel rdf:type owl:ObjectProperty ;
          owl:inverseOf :sequel ;
          rdf:type owl:TransitiveProperty ;
@@ -145,8 +150,6 @@ xsd:date rdf:type rdfs:Datatype .
          rdfs:range :Film ;
          rdfs:label "prequel" .
 
-
-###  http://semantics.id/ns/example/film#sequel
 :sequel rdf:type owl:ObjectProperty ,
                  owl:TransitiveProperty ;
         rdfs:domain :Film ;
@@ -154,391 +157,318 @@ xsd:date rdf:type rdfs:Datatype .
         rdfs:label "sequel" .
 
 
-###  http://xmlns.com/foaf/0.1/knows
+# Done a health-check and added missing properties and relations:
+### --- STRUCTURAL CLEANUP: MISSING OBJECT PROPERTIES --- ###
+
+# 1. Patching the Crew Disconnect
+:hasProducer rdf:type owl:ObjectProperty ;
+             rdfs:subPropertyOf :hasCrew ;
+             rdfs:domain :Film ;
+             rdfs:range :Producer ;
+             rdfs:label "hasProducer" .
+
+:hasCinematographer rdf:type owl:ObjectProperty ;
+                    rdfs:subPropertyOf :hasCrew ;
+                    rdfs:domain :Film ;
+                    rdfs:range :Cinematographer ;
+                    rdfs:label "hasCinematographer" .
+
+:hasEditor rdf:type owl:ObjectProperty ;
+           rdfs:subPropertyOf :hasCrew ;
+           rdfs:domain :Film ;
+           rdfs:range :Editor ;
+           rdfs:label "hasEditor" .
+
+:hasCostumeDesigner rdf:type owl:ObjectProperty ;
+                    rdfs:subPropertyOf :hasCrew ;
+                    rdfs:domain :Film ;
+                    rdfs:range :CostumeDesigner ;
+                    rdfs:label "hasCostumeDesigner" .
+
+# 2. Patching the Review Disconnect
+:reviewsArtwork rdf:type owl:ObjectProperty ;
+                rdfs:domain :Review ;
+                rdfs:range :Artwork ;
+                rdfs:label "reviewsArtwork" .
+
+# 3. Patching the Season Disconnect
+:hasSeason rdf:type owl:ObjectProperty ;
+           rdfs:domain :Series ;
+           rdfs:range :Season ;
+           rdfs:label "hasSeason" .
+
+:hasEpisode rdf:type owl:ObjectProperty ;
+            rdfs:domain :Season ;
+            rdfs:range :Episode ;
+            rdfs:label "hasEpisode" .
+
+# 4. Patching the Country Disconnect
+:availableInCountry rdf:type owl:ObjectProperty ;
+                    rdfs:domain :StreamingPlatform ;
+                    rdfs:range :Country ;
+                    rdfs:label "availableInCountry" .
+
+:hasOriginCountry rdf:type owl:ObjectProperty ;
+                  rdfs:domain :Artwork ;
+                  rdfs:range :Country ;
+                  rdfs:label "hasOriginCountry" .
+
+# (Making locatedIn Functional as discussed)
+:locatedIn rdf:type owl:ObjectProperty ,
+                    owl:FunctionalProperty ;
+           rdfs:domain :Subscriber ;
+           rdfs:range :Country ;
+           rdfs:label "locatedIn" .
+
 <http://xmlns.com/foaf/0.1/knows> rdf:type owl:ObjectProperty ;
                                   rdfs:domain <http://xmlns.com/foaf/0.1/Person> ;
                                   rdfs:range <http://xmlns.com/foaf/0.1/Person> .
 
+### Extension Properties (Streaming & Awards)
+:watched rdf:type owl:ObjectProperty ; rdfs:domain :Subscriber ; rdfs:range :Artwork ; rdfs:label "watched" .
+:likes rdf:type owl:ObjectProperty ; rdfs:domain :Subscriber ; rdfs:range :Artwork ; rdfs:label "likes" .
+:availableOn rdf:type owl:ObjectProperty ; rdfs:domain :Artwork ; rdfs:range :StreamingPlatform ; rdfs:label "availableOn" .
+:belongsToSeries rdf:type owl:ObjectProperty ; rdfs:domain :Episode ; rdfs:range :Series ; rdfs:label "belongsToSeries" .
+:hasPlan rdf:type owl:ObjectProperty ; rdfs:domain :Subscriber ; rdfs:range :SubscriptionPlan ; rdfs:label "hasPlan" .
+:subscribedTo rdf:type owl:ObjectProperty ; rdfs:domain :Subscriber ; rdfs:range :StreamingPlatform ; rdfs:label "subscribedTo" .
+:hasAgeRating rdf:type owl:ObjectProperty ; rdfs:domain :Artwork ; rdfs:range :AgeRating ; rdfs:label "hasAgeRating" .
+:hasAward rdf:type owl:ObjectProperty ; rdfs:domain :Artwork ; rdfs:range :Award ; rdfs:label "hasAward" .
 
 #################################################################
 #    Data properties
 #################################################################
 
-###  http://semantics.id/ns/example/film#budget
+### Base Data Properties
 :budget rdf:type owl:DatatypeProperty ;
         rdfs:domain :Film ;
         rdfs:range xsd:float ;
         rdfs:label "budget" .
 
-
-###  http://semantics.id/ns/example/film#dateOfBirth
 :dateOfBirth rdf:type owl:DatatypeProperty ,
                       owl:FunctionalProperty ;
              rdfs:domain <http://xmlns.com/foaf/0.1/Person> ;
              rdfs:range xsd:date ;
              rdfs:label "dateOfBirth" .
 
-
-###  http://semantics.id/ns/example/film#duration
 :duration rdf:type owl:DatatypeProperty ;
           rdfs:domain :Artwork ;
           rdfs:range xsd:float ;
           rdfs:label "duration" .
 
-
-###  http://semantics.id/ns/example/film#establishedDate
 :establishedDate rdf:type owl:DatatypeProperty ,
                           owl:FunctionalProperty ;
                  rdfs:domain :FilmStudio ;
                  rdfs:range xsd:date ;
                  rdfs:label "establishedDate" .
 
-
-###  http://semantics.id/ns/example/film#fullName
 :fullName rdf:type owl:DatatypeProperty ;
           rdfs:domain <http://xmlns.com/foaf/0.1/Person> ;
           rdfs:range xsd:string ;
           rdfs:label "fullName" .
 
-
-###  http://semantics.id/ns/example/film#gender
 :gender rdf:type owl:DatatypeProperty ,
                  owl:FunctionalProperty ;
         rdfs:domain <http://xmlns.com/foaf/0.1/Person> ;
         rdfs:range xsd:string ;
         rdfs:label "gender" .
 
-
-###  http://semantics.id/ns/example/film#releaseYear
 :releaseYear rdf:type owl:DatatypeProperty ;
              rdfs:domain :Film ;
              rdfs:range xsd:integer ;
              rdfs:label "releaseYear" .
 
+### Extension Data Properties (To reach 10 total)
+:subscriberAge rdf:type owl:DatatypeProperty ;
+               rdfs:domain :Subscriber ;
+               rdfs:range xsd:integer ;
+               rdfs:label "subscriberAge" .
+
+:imdbRating rdf:type owl:DatatypeProperty ;
+            rdfs:domain :Artwork ;
+            rdfs:range xsd:decimal ;
+            rdfs:label "imdbRating" .
+
+:subscriptionCost rdf:type owl:DatatypeProperty ;
+                  rdfs:domain :SubscriptionPlan ;
+                  rdfs:range xsd:decimal ;
+                  rdfs:label "subscriptionCost" .
+
+### Final 10 Extension Data Properties (To reach exactly 20)
+:episodeNumber rdf:type owl:DatatypeProperty ;
+               rdfs:domain :Episode ;
+               rdfs:range xsd:integer ;
+               rdfs:label "episodeNumber" .
+
+:seasonNumber rdf:type owl:DatatypeProperty ;
+              rdfs:domain :Season ;
+              rdfs:range xsd:integer ;
+              rdfs:label "seasonNumber" .
+
+:synopsis rdf:type owl:DatatypeProperty ;
+          rdfs:domain :Artwork ;
+          rdfs:range xsd:string ;
+          rdfs:label "synopsis" .
+
+:originalLanguage rdf:type owl:DatatypeProperty ;
+                  rdfs:domain :Artwork ;
+                  rdfs:range xsd:string ;
+                  rdfs:label "originalLanguage" .
+
+:maxSimultaneousStreams rdf:type owl:DatatypeProperty ;
+                        rdfs:domain :SubscriptionPlan ;
+                        rdfs:range xsd:integer ;
+                        rdfs:label "maxSimultaneousStreams" .
+
+:platformURL rdf:type owl:DatatypeProperty ;
+             rdfs:domain :StreamingPlatform ;
+             rdfs:range xsd:string ;
+             rdfs:label "platformURL" .
+
+:hasAds rdf:type owl:DatatypeProperty ;
+        rdfs:domain :SubscriptionPlan ;
+        rdfs:range xsd:boolean ;
+        rdfs:label "hasAds" .
+
+:registrationDate rdf:type owl:DatatypeProperty ;
+                  rdfs:domain :Subscriber ;
+                  rdfs:range xsd:date ;
+                  rdfs:label "registrationDate" .
+
+:awardYear rdf:type owl:DatatypeProperty ;
+           rdfs:domain :Award ;
+           rdfs:range xsd:integer ;
+           rdfs:label "awardYear" .
+
+:reviewScore rdf:type owl:DatatypeProperty ;
+             rdfs:domain :Review ;
+             rdfs:range xsd:integer ;
+             rdfs:label "reviewScore" .
 
 #################################################################
-#    Classes
+#    Classes (40 Total)
 #################################################################
 
-###  http://semantics.id/ns/example/film#Actor
-:Actor rdf:type owl:Class ;
-       rdfs:subClassOf :Performer ,
-                       <http://xmlns.com/foaf/0.1/Person> ;
-       rdfs:label "Actor" .
-
-
-###  http://semantics.id/ns/example/film#Artwork
-:Artwork rdf:type owl:Class ;
-         rdfs:label "Artwork" .
-
-
-###  http://semantics.id/ns/example/film#Composer
-:Composer rdf:type owl:Class ;
-          rdfs:subClassOf <http://xmlns.com/foaf/0.1/Person> ;
-          rdfs:label "Composer" .
-
-
-###  http://semantics.id/ns/example/film#Director
-:Director rdf:type owl:Class ;
-          rdfs:subClassOf <http://xmlns.com/foaf/0.1/Person> ;
-          rdfs:label "Director" .
-
-
-###  http://semantics.id/ns/example/film#Film
-:Film rdf:type owl:Class ;
-      rdfs:subClassOf :Artwork ;
-      rdfs:label "Film" .
-
-
-###  http://semantics.id/ns/example/film#FilmStudio
-:FilmStudio rdf:type owl:Class ;
-            rdfs:label "FilmStudio" .
-
-
-###  http://semantics.id/ns/example/film#Genre
-:Genre rdf:type owl:Class ;
-       rdfs:label "Genre" .
-
-
-###  http://semantics.id/ns/example/film#Performer
-:Performer rdf:type owl:Class ;
-           rdfs:label "Performer" .
-
-
-###  http://semantics.id/ns/example/film#ScriptWriter
-:ScriptWriter rdf:type owl:Class ;
-              rdfs:subClassOf <http://xmlns.com/foaf/0.1/Person> ;
-              rdfs:label "ScriptWriter" .
-
-
-###  http://semantics.id/ns/example/film#Soundtrack
-:Soundtrack rdf:type owl:Class ;
-            rdfs:subClassOf :Artwork ;
-            rdfs:label "Soundtrack" .
-
-
-###  http://xmlns.com/foaf/0.1/Person
+### Base Classes (11)
+:Actor rdf:type owl:Class ; rdfs:subClassOf :Performer , <http://xmlns.com/foaf/0.1/Person> ; rdfs:label "Actor" .
+:Artwork rdf:type owl:Class ; rdfs:label "Artwork" .
+:Composer rdf:type owl:Class ; rdfs:subClassOf <http://xmlns.com/foaf/0.1/Person> ; rdfs:label "Composer" .
+:Director rdf:type owl:Class ; rdfs:subClassOf <http://xmlns.com/foaf/0.1/Person> ; rdfs:label "Director" .
+:Film rdf:type owl:Class ; rdfs:subClassOf :Artwork ; rdfs:label "Film" .
+:FilmStudio rdf:type owl:Class ; rdfs:label "FilmStudio" .
+:Genre rdf:type owl:Class ; rdfs:label "Genre" .
+:Performer rdf:type owl:Class ; rdfs:label "Performer" .
+:ScriptWriter rdf:type owl:Class ; rdfs:subClassOf <http://xmlns.com/foaf/0.1/Person> ; rdfs:label "ScriptWriter" .
+:Soundtrack rdf:type owl:Class ; rdfs:subClassOf :Artwork ; rdfs:label "Soundtrack" .
 <http://xmlns.com/foaf/0.1/Person> rdf:type owl:Class .
 
+### Extended Content Classes
+:ShortFilm rdf:type owl:Class ; rdfs:subClassOf :Film ; rdfs:label "ShortFilm" .
+:Series rdf:type owl:Class ; rdfs:subClassOf :Artwork ; rdfs:label "Series" .
+:Miniseries rdf:type owl:Class ; rdfs:subClassOf :Series ; rdfs:label "Miniseries" .
+:Season rdf:type owl:Class ; rdfs:subClassOf :Artwork ; rdfs:label "Season" .
+:Episode rdf:type owl:Class ; rdfs:subClassOf :Artwork ; rdfs:label "Episode" .
+:Trailer rdf:type owl:Class ; rdfs:subClassOf :Artwork ; rdfs:label "Trailer" .
+:AgeRating rdf:type owl:Class ; rdfs:label "AgeRating" .
+
+### Extended Crew & User Classes
+:Producer rdf:type owl:Class ; rdfs:subClassOf <http://xmlns.com/foaf/0.1/Person> ; rdfs:label "Producer" .
+:Cinematographer rdf:type owl:Class ; rdfs:subClassOf <http://xmlns.com/foaf/0.1/Person> ; rdfs:label "Cinematographer" .
+:Editor rdf:type owl:Class ; rdfs:subClassOf <http://xmlns.com/foaf/0.1/Person> ; rdfs:label "Editor" .
+:CostumeDesigner rdf:type owl:Class ; rdfs:subClassOf <http://xmlns.com/foaf/0.1/Person> ; rdfs:label "CostumeDesigner" .
+:VoiceActor rdf:type owl:Class ; rdfs:subClassOf :Actor ; rdfs:label "VoiceActor" .
+:Subscriber rdf:type owl:Class ; rdfs:subClassOf <http://xmlns.com/foaf/0.1/Person> ; rdfs:label "Subscriber" .
+
+### Extended Platform & Business Classes
+:StreamingPlatform rdf:type owl:Class ; rdfs:label "StreamingPlatform" .
+:SubscriptionPlan rdf:type owl:Class ; rdfs:label "SubscriptionPlan" .
+:BasicPlan rdf:type owl:Class ; rdfs:subClassOf :SubscriptionPlan ; rdfs:label "BasicPlan" .
+:PremiumPlan rdf:type owl:Class ; rdfs:subClassOf :SubscriptionPlan ; rdfs:label "PremiumPlan" .
+:FamilyPlan rdf:type owl:Class ; rdfs:subClassOf :SubscriptionPlan ; rdfs:label "FamilyPlan" .
+:AdSupportedPlan rdf:type owl:Class ; rdfs:subClassOf :SubscriptionPlan ; rdfs:label "AdSupportedPlan" .
+:StudentPlan rdf:type owl:Class ; rdfs:subClassOf :SubscriptionPlan ; rdfs:label "StudentPlan" .
+:Country rdf:type owl:Class ; rdfs:label "Country" .
+:Review rdf:type owl:Class ; rdfs:label "Review" .
+
+### Extended Award Classes
+:Award rdf:type owl:Class ; rdfs:label "Award" .
+:Oscar rdf:type owl:Class ; rdfs:subClassOf :Award ; rdfs:label "Oscar" .
+:Emmy rdf:type owl:Class ; rdfs:subClassOf :Award ; rdfs:label "Emmy" .
+:BestComedy rdf:type owl:Class ; rdfs:subClassOf :Emmy ; rdfs:label "BestComedy" .
+:BestDrama rdf:type owl:Class ; rdfs:subClassOf :Emmy ; rdfs:label "BestDrama" .
+:GoldenGlobe rdf:type owl:Class ; rdfs:subClassOf :Award ; rdfs:label "GoldenGlobe" .
+:PalmeDOr rdf:type owl:Class ; rdfs:subClassOf :Award ; rdfs:label "PalmeDOr" .
 
 #################################################################
 #    Individuals
 #################################################################
 
-###  http://semantics.id/ns/example#EntertainmentOne
-<http://semantics.id/ns/example#EntertainmentOne> rdf:type owl:NamedIndividual ,
-                                                           :FilmStudio ;
-                                                  :establishedDate "1973-01-01"^^xsd:date ;
-                                                  rdfs:label "Entertainment One" .
+<http://semantics.id/ns/example#EntertainmentOne> rdf:type owl:NamedIndividual , :FilmStudio ; :establishedDate "1973-01-01"^^xsd:date ; rdfs:label "Entertainment One" .
+<http://semantics.id/ns/example#MandevilleFilms> rdf:type owl:NamedIndividual , :FilmStudio ; :establishedDate "1955-01-01"^^xsd:date ; rdfs:label "Mandeville Films" .
+<http://semantics.id/ns/example#WaltDisneyPictures> rdf:type owl:NamedIndividual , :FilmStudio ; :establishedDate "1985-06-21"^^xsd:date ; rdfs:label "Walt Disney Pictures" .
+<http://semantics.id/ns/example#alicia_vikander> rdf:type owl:NamedIndividual , :Actor ; :fullName "Alicia Vikander" ; :gender "female" .
+<http://semantics.id/ns/example#bill_condon> rdf:type owl:NamedIndividual , :Director ; :fullName "Bill Condon" ; :gender "male" .
+<http://semantics.id/ns/example#dan_stevens> rdf:type owl:NamedIndividual , :Actor ; :dateOfBirth "1982-10-10"^^xsd:date ; :fullName "Dan Stevens" ; :gender "male" .
+<http://semantics.id/ns/example#emma_watson> rdf:type owl:NamedIndividual , :Actor ; :dateOfBirth "1990-04-15"^^xsd:date ; :fullName "Emma Watson" ; :gender "female" .
+<http://semantics.id/ns/example#ewan_mcgregor> rdf:type owl:NamedIndividual , :Actor ; :dateOfBirth "1971-03-31"^^xsd:date ; :fullName "Ewan McGregor" ; :gender "male" .
 
-
-###  http://semantics.id/ns/example#MandevilleFilms
-<http://semantics.id/ns/example#MandevilleFilms> rdf:type owl:NamedIndividual ,
-                                                          :FilmStudio ;
-                                                 :establishedDate "1955-01-01"^^xsd:date ;
-                                                 rdfs:label "Mandeville Films" .
-
-
-###  http://semantics.id/ns/example#WaltDisneyPictures
-<http://semantics.id/ns/example#WaltDisneyPictures> rdf:type owl:NamedIndividual ,
-                                                             :FilmStudio ;
-                                                    :establishedDate "1985-06-21"^^xsd:date ;
-                                                    rdfs:label "Walt Disney Pictures" .
-
-
-###  http://semantics.id/ns/example#alicia_vikander
-<http://semantics.id/ns/example#alicia_vikander> rdf:type owl:NamedIndividual ,
-                                                          :Actor ;
-                                                 :fullName "Alicia Vikander" ;
-                                                 :gender "female" .
-
-
-###  http://semantics.id/ns/example#bill_condon
-<http://semantics.id/ns/example#bill_condon> rdf:type owl:NamedIndividual ,
-                                                      :Director ;
-                                             :fullName "Bill Condon" ;
-                                             :gender "male" .
-
-
-###  http://semantics.id/ns/example#dan_stevens
-<http://semantics.id/ns/example#dan_stevens> rdf:type owl:NamedIndividual ,
-                                                      :Actor ;
-                                             :dateOfBirth "1982-10-10"^^xsd:date ;
-                                             :fullName "Dan Stevens" ;
-                                             :gender "male" .
-
-
-###  http://semantics.id/ns/example#emma_watson
-<http://semantics.id/ns/example#emma_watson> rdf:type owl:NamedIndividual ,
-                                                      :Actor ;
-                                             :dateOfBirth "1990-04-15"^^xsd:date ;
-                                             :fullName "Emma Watson" ;
-                                             :gender "female" .
-
-
-###  http://semantics.id/ns/example#ewan_mcgregor
-<http://semantics.id/ns/example#ewan_mcgregor> rdf:type owl:NamedIndividual ,
-                                                        :Actor ;
-                                               :dateOfBirth "1971-03-31"^^xsd:date ;
-                                               :fullName "Ewan McGregor" ;
-                                               :gender "male" .
-
-
-###  http://semantics.id/ns/example#film_1
-<http://semantics.id/ns/example#film_1> rdf:type owl:NamedIndividual ,
-                                                 :Film ;
-                                        :hasActor <http://semantics.id/ns/example#ewan_mcgregor> ,
-                                                  <http://semantics.id/ns/example#hayley_atwell> ;
+<http://semantics.id/ns/example#film_1> rdf:type owl:NamedIndividual , :Film ;
+                                        :hasActor <http://semantics.id/ns/example#ewan_mcgregor> , <http://semantics.id/ns/example#hayley_atwell> ;
                                         :hasDirector <http://semantics.id/ns/example#marc_forster> ;
                                         :hasFilmStudio <http://semantics.id/ns/example#WaltDisneyPictures> ;
-                                        :hasGenre :genre_animation ,
-                                                  :genre_family ;
-                                        :hasScriptWriter <http://semantics.id/ns/example#writer_1> ,
-                                                         <http://semantics.id/ns/example#writer_2> ;
+                                        :hasGenre :genre_animation , :genre_family ;
+                                        :hasScriptWriter <http://semantics.id/ns/example#writer_1> , <http://semantics.id/ns/example#writer_2> ;
                                         :releaseYear 2018 ;
                                         rdfs:label "Christopher Robin" .
 
-
-###  http://semantics.id/ns/example#film_2
-<http://semantics.id/ns/example#film_2> rdf:type owl:NamedIndividual ,
-                                                 :Film ;
-                                        :hasActor <http://semantics.id/ns/example#alicia_vikander> ,
-                                                  <http://semantics.id/ns/example#ewan_mcgregor> ;
+<http://semantics.id/ns/example#film_2> rdf:type owl:NamedIndividual , :Film ;
+                                        :hasActor <http://semantics.id/ns/example#alicia_vikander> , <http://semantics.id/ns/example#ewan_mcgregor> ;
                                         :hasDirector <http://semantics.id/ns/example#julius_avery> ;
                                         :hasFilmStudio <http://semantics.id/ns/example#EntertainmentOne> ;
-                                        :hasGenre :genre_action ,
-                                                  :genre_drama ;
-                                        :hasScriptWriter <http://semantics.id/ns/example#julius_avery> ,
-                                                         <http://semantics.id/ns/example#writer_3> ;
+                                        :hasGenre :genre_action , :genre_drama ;
+                                        :hasScriptWriter <http://semantics.id/ns/example#julius_avery> , <http://semantics.id/ns/example#writer_3> ;
                                         :releaseYear 2014 ;
                                         rdfs:label "Son of a Gun" .
 
-
-###  http://semantics.id/ns/example#film_3
-<http://semantics.id/ns/example#film_3> rdf:type owl:NamedIndividual ,
-                                                 :Film ;
-                                        :hasActor <http://semantics.id/ns/example#dan_stevens> ,
-                                                  <http://semantics.id/ns/example#emma_watson> ,
-                                                  <http://semantics.id/ns/example#ewan_mcgregor> ;
+<http://semantics.id/ns/example#film_3> rdf:type owl:NamedIndividual , :Film ;
+                                        :hasActor <http://semantics.id/ns/example#dan_stevens> , <http://semantics.id/ns/example#emma_watson> , <http://semantics.id/ns/example#ewan_mcgregor> ;
                                         :hasDirector <http://semantics.id/ns/example#bill_condon> ;
                                         :hasFilmStudio <http://semantics.id/ns/example#WaltDisneyPictures> ;
-                                        :hasGenre :genre_family ,
-                                                  :genre_romance ;
-                                        :hasScriptWriter <http://semantics.id/ns/example#writer_4> ,
-                                                         <http://semantics.id/ns/example#writer_5> ;
+                                        :hasGenre :genre_family , :genre_romance ;
+                                        :hasScriptWriter <http://semantics.id/ns/example#writer_4> , <http://semantics.id/ns/example#writer_5> ;
                                         :hasSoundtrack :Belle ;
                                         :releaseYear 2017 ;
                                         rdfs:label "Beauty and the Beast" .
 
-
-###  http://semantics.id/ns/example#film_4
-<http://semantics.id/ns/example#film_4> rdf:type owl:NamedIndividual ,
-                                                 :Film ;
+<http://semantics.id/ns/example#film_4> rdf:type owl:NamedIndividual , :Film ;
                                         :hasActor :zendaya ;
                                         :hasComposer :hans_zimmer ;
                                         :hasGenre :genre_science_fiction ;
                                         :releaseYear 2021 ;
                                         rdfs:label "Dune" .
 
-
-###  http://semantics.id/ns/example#film_5
-<http://semantics.id/ns/example#film_5> rdf:type owl:NamedIndividual ,
-                                                 :Film ;
+<http://semantics.id/ns/example#film_5> rdf:type owl:NamedIndividual , :Film ;
                                         :hasActor :kyle_maclachlan ;
                                         :hasGenre :genre_science_fiction ;
                                         :releaseYear 1984 ;
                                         rdfs:label "Dune" .
 
+<http://semantics.id/ns/example#hayley_atwell> rdf:type owl:NamedIndividual , :Actor ; :dateOfBirth "1982-04-05"^^xsd:date ; :fullName "Hayley Atwell" ; :gender "female" .
+<http://semantics.id/ns/example#julius_avery> rdf:type owl:NamedIndividual , :Director , :ScriptWriter ; :fullName "Julius Avery" ; :gender "male" .
+<http://semantics.id/ns/example#marc_forster> rdf:type owl:NamedIndividual , :Director ; :fullName "Marc Forster" ; :gender "male" .
+<http://semantics.id/ns/example#writer_1> rdf:type owl:NamedIndividual , :ScriptWriter ; :dateOfBirth "1966-06-07"^^xsd:date ; :fullName "Tom McCarthy" ; :gender "male" .
+<http://semantics.id/ns/example#writer_2> rdf:type owl:NamedIndividual , :ScriptWriter ; :fullName "Alex Ross" .
+<http://semantics.id/ns/example#writer_3> rdf:type owl:NamedIndividual , :ScriptWriter ; :fullName "John Collee" ; :gender "male" .
+<http://semantics.id/ns/example#writer_4> rdf:type owl:NamedIndividual , :ScriptWriter ; :fullName "Stephen Chbosky" ; :gender "male" .
+<http://semantics.id/ns/example#writer_5> rdf:type owl:NamedIndividual , :ScriptWriter ; :fullName "Evan Spiliotopoulos" .
 
-###  http://semantics.id/ns/example#hayley_atwell
-<http://semantics.id/ns/example#hayley_atwell> rdf:type owl:NamedIndividual ,
-                                                        :Actor ;
-                                               :dateOfBirth "1982-04-05"^^xsd:date ;
-                                               :fullName "Hayley Atwell" ;
-                                               :gender "female" .
-
-
-###  http://semantics.id/ns/example#julius_avery
-<http://semantics.id/ns/example#julius_avery> rdf:type owl:NamedIndividual ,
-                                                       :Director ,
-                                                       :ScriptWriter ;
-                                              :fullName "Julius Avery" ;
-                                              :gender "male" .
-
-
-###  http://semantics.id/ns/example#marc_forster
-<http://semantics.id/ns/example#marc_forster> rdf:type owl:NamedIndividual ,
-                                                       :Director ;
-                                              :fullName "Marc Forster" ;
-                                              :gender "male" .
-
-
-###  http://semantics.id/ns/example#writer_1
-<http://semantics.id/ns/example#writer_1> rdf:type owl:NamedIndividual ,
-                                                   :ScriptWriter ;
-                                          :dateOfBirth "1966-06-07"^^xsd:date ;
-                                          :fullName "Tom McCarthy" ;
-                                          :gender "male" .
-
-
-###  http://semantics.id/ns/example#writer_2
-<http://semantics.id/ns/example#writer_2> rdf:type owl:NamedIndividual ,
-                                                   :ScriptWriter ;
-                                          :fullName "Alex Ross" .
-
-
-###  http://semantics.id/ns/example#writer_3
-<http://semantics.id/ns/example#writer_3> rdf:type owl:NamedIndividual ,
-                                                   :ScriptWriter ;
-                                          :fullName "John Collee" ;
-                                          :gender "male" .
-
-
-###  http://semantics.id/ns/example#writer_4
-<http://semantics.id/ns/example#writer_4> rdf:type owl:NamedIndividual ,
-                                                   :ScriptWriter ;
-                                          :fullName "Stephen Chbosky" ;
-                                          :gender "male" .
-
-
-###  http://semantics.id/ns/example#writer_5
-<http://semantics.id/ns/example#writer_5> rdf:type owl:NamedIndividual ,
-                                                   :ScriptWriter ;
-                                          :fullName "Evan Spiliotopoulos" .
-
-
-###  http://semantics.id/ns/example/film#Belle
-:Belle rdf:type owl:NamedIndividual ,
-                :Soundtrack ;
-       :hasPerformer :alan_menken ;
-       rdfs:label "Belle (Soundtrack Version)" ;
-       rdfs:seeAlso "https://www.youtube.com/watch?v=piYIZaoBJMQ" .
-
-
-###  http://semantics.id/ns/example/film#alan_menken
-:alan_menken rdf:type owl:NamedIndividual ,
-                      :Composer ,
-                      :Performer ;
-             :fullName "Alan Menken" ;
-             :gender "male" .
-
-
-###  http://semantics.id/ns/example/film#genre_action
-:genre_action rdf:type owl:NamedIndividual ,
-                       :Genre ;
-              rdfs:label "Action" .
-
-
-###  http://semantics.id/ns/example/film#genre_animation
-:genre_animation rdf:type owl:NamedIndividual ,
-                          :Genre ;
-                 rdfs:label "Animation" .
-
-
-###  http://semantics.id/ns/example/film#genre_drama
-:genre_drama rdf:type owl:NamedIndividual ,
-                      :Genre ;
-             rdfs:label "Drama" .
-
-
-###  http://semantics.id/ns/example/film#genre_family
-:genre_family rdf:type owl:NamedIndividual ,
-                       :Genre ;
-              rdfs:label "Family" .
-
-
-###  http://semantics.id/ns/example/film#genre_romance
-:genre_romance rdf:type owl:NamedIndividual ,
-                        :Genre ;
-               rdfs:label "Romance" .
-
-
-###  http://semantics.id/ns/example/film#genre_science_fiction
-:genre_science_fiction rdf:type owl:NamedIndividual ,
-                                :Genre ;
-                       rdfs:label "Science Fiction"@en .
-
-
-###  http://semantics.id/ns/example/film#hans_zimmer
-:hans_zimmer rdf:type owl:NamedIndividual ,
-                      :Composer ;
-             :fullName "Hans Zimmer" .
-
-
-###  http://semantics.id/ns/example/film#kyle_maclachlan
-:kyle_maclachlan rdf:type owl:NamedIndividual ,
-                          :Actor ;
-                 :dateOfBirth "1959-02-22"^^xsd:date ;
-                 :fullName "Kyle Merritt MacLachlan" ;
-                 :gender "male" .
-
-
-###  http://semantics.id/ns/example/film#zendaya
-:zendaya rdf:type owl:NamedIndividual ,
-                  :Actor ;
-         :dateOfBirth "1996-09-01"^^xsd:date ;
-         :fullName "Zendaya Maree Stoermer Coleman" ;
-         :gender "female" .
-
-
-###  Generated by the OWL API (version 5.1.18) https://github.com/owlcs/owlapi/
+:Belle rdf:type owl:NamedIndividual , :Soundtrack ; :hasPerformer :alan_menken ; rdfs:label "Belle (Soundtrack Version)" ; rdfs:seeAlso "https://www.youtube.com/watch?v=piYIZaoBJMQ" .
+:alan_menken rdf:type owl:NamedIndividual , :Composer , :Performer ; :fullName "Alan Menken" ; :gender "male" .
+:genre_action rdf:type owl:NamedIndividual , :Genre ; rdfs:label "Action" .
+:genre_animation rdf:type owl:NamedIndividual , :Genre ; rdfs:label "Animation" .
+:genre_drama rdf:type owl:NamedIndividual , :Genre ; rdfs:label "Drama" .
+:genre_family rdf:type owl:NamedIndividual , :Genre ; rdfs:label "Family" .
+:genre_romance rdf:type owl:NamedIndividual , :Genre ; rdfs:label "Romance" .
+:genre_science_fiction rdf:type owl:NamedIndividual , :Genre ; rdfs:label "Science Fiction"@en .
+:hans_zimmer rdf:type owl:NamedIndividual , :Composer ; :fullName "Hans Zimmer" .
+:kyle_maclachlan rdf:type owl:NamedIndividual , :Actor ; :dateOfBirth "1959-02-22"^^xsd:date ; :fullName "Kyle Merritt MacLachlan" ; :gender "male" .
+:zendaya rdf:type owl:NamedIndividual , :Actor ; :dateOfBirth "1996-09-01"^^xsd:date ; :fullName "Zendaya Maree Stoermer Coleman" ; :gender "female" .
