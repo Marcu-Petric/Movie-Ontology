@@ -1,0 +1,13 @@
+UserID,UserName,UserAge,LocatedInCountry,SubscribedPlatform,ChosenPlan,FriendOf,WatchedArtwork,LikesArtwork,WroteReview,ReviewScore
+user_alex,Alex,22,country_romania,platform_netflix,plan_net_prem,user_maria,film_4,film_4,rev_alex_1,9
+user_maria,Maria,24,country_spain,platform_netflix,plan_net_ad,user_david,film_4,film_1,rev_maria_1,10
+user_david,David,21,country_usa,platform_max,plan_max_ad,user_alex,film_1,film_2,rev_david_1,7
+user_emma,Emma,26,country_uk,platform_prime,plan_prime_basic,user_sophia,film_3,film_3,rev_emma_1,8
+user_sophia,Sophia,25,country_germany,platform_disney,plan_dis_fam,user_lucas,film_3,film_1,rev_sophia_1,9
+user_ken,Ken,30,country_japan,platform_hulu,plan_hulu_stu,user_david,film_2,film_2,rev_ken_1,10
+user_alex,Alex,22,country_romania,platform_max,plan_max_prem,user_david,film_2,film_3,rev_alex_2,8
+user_maria,Maria,24,country_spain,platform_disney,plan_dis_basic,user_isabella,film_2,film_2,rev_maria_2,9
+user_lucas,Lucas,28,country_usa,platform_netflix,plan_net_basic,user_emma,film_4,film_4,rev_lucas_1,10
+user_isabella,Isabella,23,country_spain,platform_max,plan_max_prem,user_maria,film_1,film_4,rev_isa_1,6
+user_emma,Emma,26,country_uk,platform_netflix,plan_net_basic,user_alex,film_1,film_1,rev_emma_2,7
+user_david,David,21,country_usa,platform_hulu,plan_hulu_ad,user_ken,film_4,film_4,rev_david_2,8
