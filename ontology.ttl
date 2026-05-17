@@ -344,6 +344,42 @@ xsd:date rdf:type rdfs:Datatype .
              rdfs:range xsd:integer ;
              rdfs:label "reviewScore" .
 
+### Stage 6: Role Constraints (Defined Classes)
+
+:SciFiFilm rdf:type owl:Class ;
+           owl:equivalentClass [ rdf:type owl:Class ;
+                                 owl:intersectionOf ( :Film
+                                                      [ rdf:type owl:Restriction ;
+                                                        owl:onProperty :hasGenre ;
+                                                        owl:hasValue :genre_science_fiction
+                                                      ]
+                                                    )
+                               ] ;
+           rdfs:label "SciFiFilm" .
+
+:EnsembleFilm rdf:type owl:Class ;
+              owl:equivalentClass [ rdf:type owl:Class ;
+                                    owl:intersectionOf ( :Film
+                                                         [ rdf:type owl:Restriction ;
+                                                           owl:onProperty :hasActor ;
+                                                           owl:minQualifiedCardinality "3"^^xsd:nonNegativeInteger ;
+                                                           owl:onClass :Actor
+                                                         ]
+                                                       )
+                                  ] ;
+              rdfs:label "EnsembleFilm" .
+
+:AwardWinningArtwork rdf:type owl:Class ;
+                     owl:equivalentClass [ rdf:type owl:Class ;
+                                           owl:intersectionOf ( :Artwork
+                                                                [ rdf:type owl:Restriction ;
+                                                                  owl:onProperty :hasAward ;
+                                                                  owl:someValuesFrom :Award
+                                                                ]
+                                                              )
+                                         ] ;
+                     rdfs:label "AwardWinningArtwork" .
+                     
 #################################################################
 #    Classes (40 Total)
 #################################################################
