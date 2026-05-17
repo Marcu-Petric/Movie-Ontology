@@ -99,6 +99,50 @@ xsd:date rdf:type rdfs:Datatype .
                rdfs:range :Soundtrack ;
                rdfs:label "hasSoundtrack" .
 
+# 1. Functional (Replacing the old hasAgeRating)
+:hasAgeRating rdf:type owl:ObjectProperty , 
+                       owl:FunctionalProperty ; 
+              rdfs:domain :Artwork ; 
+              rdfs:range :AgeRating ; 
+              rdfs:label "hasAgeRating" .
+
+# 2. Inverse Functional
+:wroteReview rdf:type owl:ObjectProperty , 
+                      owl:InverseFunctionalProperty ; 
+             rdfs:domain :Subscriber ; 
+             rdfs:range :Review ; 
+             rdfs:label "wroteReview" .
+
+# 3. Symmetric
+:coStarredWith rdf:type owl:ObjectProperty , 
+                        owl:SymmetricProperty ; 
+               rdfs:domain :Actor ; 
+               rdfs:range :Actor ; 
+               rdfs:label "coStarredWith" .
+
+# 4. Asymmetric
+:nextEpisode rdf:type owl:ObjectProperty , 
+                      owl:AsymmetricProperty ; 
+             rdfs:domain :Episode ; 
+             rdfs:range :Episode ; 
+             rdfs:label "nextEpisode" .
+
+# 5. Reflexive
+:inSameUniverse rdf:type owl:ObjectProperty , 
+                         owl:ReflexiveProperty ; 
+                rdfs:domain :Artwork ; 
+                rdfs:range :Artwork ; 
+                rdfs:label "inSameUniverse" .
+
+# 6. Irreflexive
+:recommendsTo rdf:type owl:ObjectProperty , 
+                       owl:IrreflexiveProperty ; 
+              rdfs:domain :Subscriber ; 
+              rdfs:range :Subscriber ; 
+              rdfs:label "recommendsTo" .
+
+# Note: :sequel (Transitive) is already defined natively in the TU Wien base code.
+
 :prequel rdf:type owl:ObjectProperty ;
          owl:inverseOf :sequel ;
          rdf:type owl:TransitiveProperty ;

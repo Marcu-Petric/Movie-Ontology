@@ -57,3 +57,16 @@
     \item \texttt{dc:creator} (Used to track who created the ontology)
     \item \texttt{rdfs:comment} (Used for adding descriptions to new classes)
 \end{itemize}
+
+\section*{Stage 5 Extension: Advanced Role Characteristics}
+To fulfill the logical constraints of the ontology and map the complex relationships within a streaming platform ecosystem, we defined specific use-cases for the advanced OWL relation characteristics:
+
+\begin{itemize}
+    \item \textbf{Functional Property:} \texttt{hasAgeRating} (Artwork $\rightarrow$ AgeRating). A specific piece of artwork can only hold one official age classification.
+    \item \textbf{Inverse Functional Property:} \texttt{wroteReview} (Subscriber $\rightarrow$ Review). A specific review can uniquely identify its author; a single review cannot be authored by two distinct subscribers.
+    \item \textbf{Transitive Property:} \texttt{sequel} (Film $\rightarrow$ Film). If Film C is a sequel to Film B, and Film B is a sequel to Film A, the reasoner infers that Film C is in the sequel lineage of Film A.
+    \item \textbf{Symmetric Property:} \texttt{coStarredWith} (Actor $\rightarrow$ Actor). If Actor A co-starred with Actor B, then Actor B automatically co-starred with Actor A.
+    \item \textbf{Asymmetric Property:} \texttt{nextEpisode} (Episode $\rightarrow$ Episode). If Episode 2 follows Episode 1, it is mathematically impossible for Episode 1 to follow Episode 2.
+    \item \textbf{Reflexive Property:} \texttt{inSameUniverse} (Artwork $\rightarrow$ Artwork). By default, every piece of artwork exists within the same cinematic universe as itself.
+    \item \textbf{Irreflexive Property:} \texttt{recommendsTo} (Subscriber $\rightarrow$ Subscriber). A subscriber can recommend content to other users on the platform, but cannot logically send a recommendation to themselves.
+\end{itemize}
