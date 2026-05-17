@@ -1,0 +1,51 @@
+EntityID,Title,ClassType,CountryID,GenreID,BelongsToSeries,BelongsToSeason,NextEpisode
+movie_inception,Inception,Film,country_usa,genre_science_fiction,,,
+movie_interstellar,Interstellar,Film,country_usa,genre_science_fiction,,,
+movie_parasite,Parasite,Film,country_japan,genre_drama,,,
+movie_gladiator,Gladiator,Film,country_uk,genre_action,,,
+movie_matrix,The Matrix,Film,country_usa,genre_science_fiction,,,
+movie_dark_knight,The Dark Knight,Film,country_usa,genre_action,,,
+movie_oppenheimer,Oppenheimer,Film,country_usa,genre_drama,,,
+movie_barbie,Barbie,Film,country_usa,genre_family,,,
+movie_spirited,Spirited Away,Film,country_japan,genre_animation,,,
+movie_dune_2,Dune: Part Two,Film,country_usa,genre_science_fiction,,,
+movie_432,4 Months 3 Weeks and 2 Days,Film,country_romania,genre_drama,,,
+movie_colectiv,Collective,Film,country_romania,genre_drama,,,
+movie_chuck,Chuck Norris vs Communism,Film,country_romania,genre_action,,,
+series_chernobyl,Chernobyl,Miniseries,country_uk,genre_drama,,,
+season_chernobyl_1,Chernobyl: Season 1,Season,,,series_chernobyl,,
+ep_cher_1,1:23:45,Episode,,,,season_chernobyl_1,ep_cher_2
+ep_cher_2,Please Remain Calm,Episode,,,,season_chernobyl_1,ep_cher_3
+ep_cher_3,Open Wide O Earth,Episode,,,,season_chernobyl_1,ep_cher_4
+ep_cher_4,The Happiness of All Mankind,Episode,,,,season_chernobyl_1,ep_cher_5
+ep_cher_5,Vichnaya Pamyat,Episode,,,,season_chernobyl_1,
+series_bcs,Better Call Saul,Series,country_usa,genre_drama,,,
+season_bcs_1,BCS: Season 1,Season,,,series_bcs,,
+ep_bcs_101,Uno,Episode,,,,season_bcs_1,ep_bcs_102
+ep_bcs_102,Mijo,Episode,,,,season_bcs_1,ep_bcs_103
+ep_bcs_103,Nacho,Episode,,,,season_bcs_1,ep_bcs_104
+ep_bcs_104,Hero,Episode,,,,season_bcs_1,ep_bcs_105
+ep_bcs_105,Alpine Shepherd Boy,Episode,,,,season_bcs_1,ep_bcs_106
+ep_bcs_106,Five-O,Episode,,,,season_bcs_1,ep_bcs_107
+ep_bcs_107,Bingo,Episode,,,,season_bcs_1,ep_bcs_108
+ep_bcs_108,RICO,Episode,,,,season_bcs_1,ep_bcs_109
+ep_bcs_109,Pimento,Episode,,,,season_bcs_1,ep_bcs_110
+ep_bcs_110,Marco,Episode,,,,season_bcs_1,
+series_arcane,Arcane,Series,country_usa,genre_animation,,,
+season_arc_1,Arcane: Season 1,Season,,,series_arcane,,
+ep_arc_1,Welcome to the Playground,Episode,,,,season_arc_1,ep_arc_2
+ep_arc_2,Some Mysteries Are Better Left Unsolved,Episode,,,,season_arc_1,ep_arc_3
+ep_arc_3,The Base Violence Necessary for Change,Episode,,,,season_arc_1,ep_arc_4
+ep_arc_4,Happy Progress Day!,Episode,,,,season_arc_1,ep_arc_5
+ep_arc_5,Everybody Wants to Be My Enemy,Episode,,,,season_arc_1,ep_arc_6
+ep_arc_6,When These Walls Come Tumbling Down,Episode,,,,season_arc_1,ep_arc_7
+ep_arc_7,The Boy Savior,Episode,,,,season_arc_1,ep_arc_8
+ep_arc_8,Oil and Water,Episode,,,,season_arc_1,ep_arc_9
+ep_arc_9,The Monster You Created,Episode,,,,season_arc_1,
+series_mh,Money Heist,Series,country_spain,genre_action,,,
+season_mh_1,Money Heist: Part 1,Season,,,series_mh,,
+ep_mh_1,Efectuar lo acordado,Episode,,,,season_mh_1,ep_mh_2
+ep_mh_2,Imprudencias letales,Episode,,,,season_mh_1,ep_mh_3
+ep_mh_3,Error de disparo,Episode,,,,season_mh_1,ep_mh_4
+ep_mh_4,Caballo de Troya,Episode,,,,season_mh_1,ep_mh_5
+ep_mh_5,El dia de la marmota,Episode,,,,season_mh_1,

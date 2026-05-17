@@ -1,0 +1,34 @@
+{
+    "Collections": [
+        {
+            "sheetName": "platforms_and_plans",
+            "startColumn": "A",
+            "endColumn": "A",
+            "startRow": "2",
+            "endRow": "+",
+            "comment": "",
+            "rule": "Individual: @A*\nTypes: StreamingPlatform\nAnnotations:\n  rdfs:label @B*\nFacts:\n  platformURL @C*(xsd:string),\n  availableInCountry @D*(mm:entityIRI),\n  offersPlan @F*(mm:entityIRI)",
+            "active": true
+        },
+        {
+            "sheetName": "platforms_and_plans",
+            "startColumn": "A",
+            "endColumn": "A",
+            "startRow": "2",
+            "endRow": "+",
+            "comment": "",
+            "rule": "Individual: @F*\nTypes: @G*\nFacts:\n  subscriptionCost @H*(xsd:decimal),\n  maxSimultaneousStreams @I*(xsd:integer),\n  hasAds @J*(xsd:boolean)",
+            "active": true
+        },
+        {
+            "sheetName": "platforms_and_plans",
+            "startColumn": "A",
+            "endColumn": "A",
+            "startRow": "2",
+            "endRow": "+",
+            "comment": "",
+            "rule": "Individual: @D*\nTypes: Country\nAnnotations:\n  rdfs:label @E*",
+            "active": true
+        }
+    ]
+}
