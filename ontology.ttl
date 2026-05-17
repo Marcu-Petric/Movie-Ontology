@@ -1512,6 +1512,258 @@ xsd:date rdf:type rdfs:Datatype .
                 rdfs:label "Prime Video" .
 
 
+###  http://semantics.id/ns/example/film#rev_alex_1
+:rev_alex_1 rdf:type owl:NamedIndividual ,
+                     :Review ;
+            :reviewsArtwork :movie_dune_2 ;
+            :reviewScore 9 .
+
+
+###  http://semantics.id/ns/example/film#rev_alex_2
+:rev_alex_2 rdf:type owl:NamedIndividual ,
+                     :Review ;
+            :reviewsArtwork :series_chernobyl ;
+            :reviewScore 9 .
+
+
+###  http://semantics.id/ns/example/film#rev_alex_3
+:rev_alex_3 rdf:type owl:NamedIndividual ,
+                     :Review ;
+            :reviewsArtwork :movie_interstellar ;
+            :reviewScore 10 .
+
+
+###  http://semantics.id/ns/example/film#rev_and_1
+:rev_and_1 rdf:type owl:NamedIndividual ,
+                    :Review ;
+           :reviewsArtwork :movie_colectiv ;
+           :reviewScore 9 .
+
+
+###  http://semantics.id/ns/example/film#rev_and_2
+:rev_and_2 rdf:type owl:NamedIndividual ,
+                    :Review ;
+           :reviewsArtwork :series_chernobyl ;
+           :reviewScore 10 .
+
+
+###  http://semantics.id/ns/example/film#rev_and_3
+:rev_and_3 rdf:type owl:NamedIndividual ,
+                    :Review ;
+           :reviewsArtwork :movie_dune_2 ;
+           :reviewScore 9 .
+
+
+###  http://semantics.id/ns/example/film#rev_car_1
+:rev_car_1 rdf:type owl:NamedIndividual ,
+                    :Review ;
+           :reviewsArtwork :movie_inception ;
+           :reviewScore 9 .
+
+
+###  http://semantics.id/ns/example/film#rev_car_2
+:rev_car_2 rdf:type owl:NamedIndividual ,
+                    :Review ;
+           :reviewsArtwork :movie_dark_knight ;
+           :reviewScore 9 .
+
+
+###  http://semantics.id/ns/example/film#rev_dav_1
+:rev_dav_1 rdf:type owl:NamedIndividual ,
+                    :Review ;
+           :reviewsArtwork :movie_inception ;
+           :reviewScore 8 .
+
+
+###  http://semantics.id/ns/example/film#rev_dav_2
+:rev_dav_2 rdf:type owl:NamedIndividual ,
+                    :Review ;
+           :reviewsArtwork :movie_matrix ;
+           :reviewScore 9 .
+
+
+###  http://semantics.id/ns/example/film#rev_dav_3
+:rev_dav_3 rdf:type owl:NamedIndividual ,
+                    :Review ;
+           :reviewsArtwork :movie_dark_knight ;
+           :reviewScore 10 .
+
+
+###  http://semantics.id/ns/example/film#rev_dav_4
+:rev_dav_4 rdf:type owl:NamedIndividual ,
+                    :Review ;
+           :reviewsArtwork :movie_parasite ;
+           :reviewScore 10 .
+
+
+###  http://semantics.id/ns/example/film#rev_dav_5
+:rev_dav_5 rdf:type owl:NamedIndividual ,
+                    :Review ;
+           :reviewsArtwork :series_chernobyl ;
+           :reviewScore 10 .
+
+
+###  http://semantics.id/ns/example/film#rev_emm_1
+:rev_emm_1 rdf:type owl:NamedIndividual ,
+                    :Review ;
+           :reviewsArtwork :movie_interstellar ;
+           :reviewScore 9 .
+
+
+###  http://semantics.id/ns/example/film#rev_emm_2
+:rev_emm_2 rdf:type owl:NamedIndividual ,
+                    :Review ;
+           :reviewsArtwork :movie_dune_2 ;
+           :reviewScore 10 .
+
+
+###  http://semantics.id/ns/example/film#rev_emm_3
+:rev_emm_3 rdf:type owl:NamedIndividual ,
+                    :Review ;
+           :reviewsArtwork :movie_barbie ;
+           :reviewScore 7 .
+
+
+###  http://semantics.id/ns/example/film#rev_isa_1
+:rev_isa_1 rdf:type owl:NamedIndividual ,
+                    :Review ;
+           :reviewsArtwork :movie_parasite ;
+           :reviewScore 10 .
+
+
+###  http://semantics.id/ns/example/film#rev_isa_2
+:rev_isa_2 rdf:type owl:NamedIndividual ,
+                    :Review ;
+           :reviewsArtwork :movie_gladiator ;
+           :reviewScore 7 .
+
+
+###  http://semantics.id/ns/example/film#rev_isa_3
+:rev_isa_3 rdf:type owl:NamedIndividual ,
+                    :Review ;
+           :reviewsArtwork :movie_dark_knight ;
+           :reviewScore 9 .
+
+
+###  http://semantics.id/ns/example/film#rev_ken_1
+:rev_ken_1 rdf:type owl:NamedIndividual ,
+                    :Review ;
+           :reviewsArtwork :movie_spirited ;
+           :reviewScore 10 .
+
+
+###  http://semantics.id/ns/example/film#rev_ken_2
+:rev_ken_2 rdf:type owl:NamedIndividual ,
+                    :Review ;
+           :reviewsArtwork :movie_parasite ;
+           :reviewScore 9 .
+
+
+###  http://semantics.id/ns/example/film#rev_ken_3
+:rev_ken_3 rdf:type owl:NamedIndividual ,
+                    :Review ;
+           :reviewsArtwork :series_chernobyl ;
+           :reviewScore 10 .
+
+
+###  http://semantics.id/ns/example/film#rev_luc_1
+:rev_luc_1 rdf:type owl:NamedIndividual ,
+                    :Review ;
+           :reviewsArtwork :movie_oppenheimer ;
+           :reviewScore 9 .
+
+
+###  http://semantics.id/ns/example/film#rev_luc_2
+:rev_luc_2 rdf:type owl:NamedIndividual ,
+                    :Review ;
+           :reviewsArtwork :movie_dune_2 ;
+           :reviewScore 8 .
+
+
+###  http://semantics.id/ns/example/film#rev_luc_3
+:rev_luc_3 rdf:type owl:NamedIndividual ,
+                    :Review ;
+           :reviewsArtwork :series_bcs ;
+           :reviewScore 10 .
+
+
+###  http://semantics.id/ns/example/film#rev_mar_1
+:rev_mar_1 rdf:type owl:NamedIndividual ,
+                    :Review ;
+           :reviewsArtwork :series_mh ;
+           :reviewScore 10 .
+
+
+###  http://semantics.id/ns/example/film#rev_mar_2
+:rev_mar_2 rdf:type owl:NamedIndividual ,
+                    :Review ;
+           :reviewsArtwork :movie_barbie ;
+           :reviewScore 8 .
+
+
+###  http://semantics.id/ns/example/film#rev_mar_3
+:rev_mar_3 rdf:type owl:NamedIndividual ,
+                    :Review ;
+           :reviewsArtwork :series_bcs ;
+           :reviewScore 10 .
+
+
+###  http://semantics.id/ns/example/film#rev_mat_1
+:rev_mat_1 rdf:type owl:NamedIndividual ,
+                    :Review ;
+           :reviewsArtwork :movie_432 ;
+           :reviewScore 10 .
+
+
+###  http://semantics.id/ns/example/film#rev_mat_2
+:rev_mat_2 rdf:type owl:NamedIndividual ,
+                    :Review ;
+           :reviewsArtwork :movie_oppenheimer ;
+           :reviewScore 9 .
+
+
+###  http://semantics.id/ns/example/film#rev_mat_3
+:rev_mat_3 rdf:type owl:NamedIndividual ,
+                    :Review ;
+           :reviewsArtwork :movie_gladiator ;
+           :reviewScore 8 .
+
+
+###  http://semantics.id/ns/example/film#rev_mat_4
+:rev_mat_4 rdf:type owl:NamedIndividual ,
+                    :Review ;
+           :reviewsArtwork :series_arcane ;
+           :reviewScore 10 .
+
+
+###  http://semantics.id/ns/example/film#rev_sop_1
+:rev_sop_1 rdf:type owl:NamedIndividual ,
+                    :Review ;
+           :reviewsArtwork :series_chernobyl ;
+           :reviewScore 10 .
+
+
+###  http://semantics.id/ns/example/film#rev_sop_2
+:rev_sop_2 rdf:type owl:NamedIndividual ,
+                    :Review ;
+           :reviewsArtwork :movie_spirited ;
+           :reviewScore 10 .
+
+
+###  http://semantics.id/ns/example/film#rev_sop_3
+:rev_sop_3 rdf:type owl:NamedIndividual ,
+                    :Review ;
+           :reviewsArtwork :series_mh ;
+           :reviewScore 9 .
+
+
+###  http://semantics.id/ns/example/film#rev_sop_4
+:rev_sop_4 rdf:type owl:NamedIndividual ,
+                    :Review ;
+           :reviewsArtwork :movie_dark_knight ;
+           :reviewScore 8 .
+
+
 ###  http://semantics.id/ns/example/film#season_arc_1
 :season_arc_1 rdf:type owl:NamedIndividual ,
                        :Season ;
@@ -1599,6 +1851,281 @@ xsd:date rdf:type rdfs:Datatype .
            :hasOriginCountry :country_spain ;
            :hasSeason :season_mh_1 ;
            rdfs:label "Money Heist" .
+
+
+###  http://semantics.id/ns/example/film#user_alex
+:user_alex rdf:type owl:NamedIndividual ,
+                    :Subscriber ;
+           :friendOf :user_andrei ,
+                     :user_maria ,
+                     :user_matei ;
+           :hasPlan :plan_max_prem ,
+                    :plan_net_prem ;
+           :likes :movie_dune_2 ,
+                  :movie_interstellar ,
+                  :series_chernobyl ;
+           :locatedIn :country_romania ;
+           :subscribedTo :platform_max ,
+                         :platform_netflix ;
+           :watched :movie_dune_2 ,
+                    :movie_interstellar ,
+                    :movie_oppenheimer ,
+                    :movie_parasite ,
+                    :series_chernobyl ;
+           :wroteReview :rev_alex_1 ,
+                        :rev_alex_2 ,
+                        :rev_alex_3 ;
+           :subscriberAge 22 ;
+           rdfs:label "Alex" .
+
+
+###  http://semantics.id/ns/example/film#user_andrei
+:user_andrei rdf:type owl:NamedIndividual ,
+                      :Subscriber ;
+             :friendOf :user_alex ,
+                       :user_matei ;
+             :hasPlan :plan_max_prem ;
+             :likes :movie_colectiv ,
+                    :movie_dune_2 ,
+                    :series_chernobyl ;
+             :locatedIn :country_romania ;
+             :subscribedTo :platform_max ;
+             :watched :movie_barbie ,
+                      :movie_colectiv ,
+                      :movie_dune_2 ,
+                      :movie_matrix ,
+                      :series_chernobyl ;
+             :wroteReview :rev_and_1 ,
+                          :rev_and_2 ,
+                          :rev_and_3 ;
+             :subscriberAge 28 ;
+             rdfs:label "Andrei" .
+
+
+###  http://semantics.id/ns/example/film#user_carmen
+:user_carmen rdf:type owl:NamedIndividual ,
+                      :Subscriber ;
+             :friendOf :user_isa ,
+                       :user_maria ;
+             :hasPlan :plan_net_ad ;
+             :likes :movie_dark_knight ,
+                    :movie_inception ,
+                    :series_mh ;
+             :locatedIn :country_spain ;
+             :subscribedTo :platform_netflix ;
+             :watched :movie_dark_knight ,
+                      :movie_gladiator ,
+                      :movie_inception ,
+                      :series_bcs ,
+                      :series_mh ;
+             :wroteReview :rev_car_1 ,
+                          :rev_car_2 ;
+             :subscriberAge 26 ;
+             rdfs:label "Carmen" .
+
+
+###  http://semantics.id/ns/example/film#user_david
+:user_david rdf:type owl:NamedIndividual ,
+                     :Subscriber ;
+            :friendOf :user_alex ,
+                      :user_emma ,
+                      :user_lucas ;
+            :hasPlan :plan_hulu_ad ,
+                     :plan_max_ad ;
+            :likes :movie_dark_knight ,
+                   :movie_inception ,
+                   :movie_matrix ,
+                   :movie_parasite ,
+                   :series_chernobyl ;
+            :locatedIn :country_usa ;
+            :subscribedTo :platform_hulu ,
+                          :platform_max ;
+            :watched :movie_dark_knight ,
+                     :movie_inception ,
+                     :movie_matrix ,
+                     :movie_parasite ,
+                     :series_chernobyl ;
+            :wroteReview :rev_dav_1 ,
+                         :rev_dav_2 ,
+                         :rev_dav_3 ,
+                         :rev_dav_4 ,
+                         :rev_dav_5 ;
+            :subscriberAge 21 ;
+            rdfs:label "David" .
+
+
+###  http://semantics.id/ns/example/film#user_emma
+:user_emma rdf:type owl:NamedIndividual ,
+                    :Subscriber ;
+           :friendOf :user_david ,
+                     :user_lucas ,
+                     :user_sophia ;
+           :hasPlan :plan_prime_basic ;
+           :likes :movie_barbie ,
+                  :movie_dune_2 ,
+                  :movie_interstellar ,
+                  :series_bcs ;
+           :locatedIn :country_uk ;
+           :subscribedTo :platform_prime ;
+           :watched :movie_barbie ,
+                    :movie_dune_2 ,
+                    :movie_interstellar ,
+                    :movie_matrix ,
+                    :series_bcs ;
+           :wroteReview :rev_emm_1 ,
+                        :rev_emm_2 ,
+                        :rev_emm_3 ;
+           :subscriberAge 26 ;
+           rdfs:label "Emma" .
+
+
+###  http://semantics.id/ns/example/film#user_isa
+:user_isa rdf:type owl:NamedIndividual ,
+                   :Subscriber ;
+          :friendOf :user_carmen ,
+                    :user_maria ;
+          :hasPlan :plan_max_prem ;
+          :likes :movie_dark_knight ,
+                 :movie_gladiator ,
+                 :movie_parasite ,
+                 :series_arcane ;
+          :locatedIn :country_spain ;
+          :subscribedTo :platform_max ;
+          :watched :movie_dark_knight ,
+                   :movie_gladiator ,
+                   :movie_oppenheimer ,
+                   :movie_parasite ,
+                   :series_arcane ;
+          :wroteReview :rev_isa_1 ,
+                       :rev_isa_2 ,
+                       :rev_isa_3 ;
+          :subscriberAge 23 ;
+          rdfs:label "Isabella" .
+
+
+###  http://semantics.id/ns/example/film#user_ken
+:user_ken rdf:type owl:NamedIndividual ,
+                   :Subscriber ;
+          :friendOf :user_david ,
+                    :user_sophia ;
+          :hasPlan :plan_hulu_stu ;
+          :likes :movie_parasite ,
+                 :movie_spirited ,
+                 :series_chernobyl ;
+          :locatedIn :country_japan ;
+          :subscribedTo :platform_hulu ;
+          :watched :movie_interstellar ,
+                   :movie_parasite ,
+                   :movie_spirited ,
+                   :series_arcane ,
+                   :series_chernobyl ;
+          :wroteReview :rev_ken_1 ,
+                       :rev_ken_2 ,
+                       :rev_ken_3 ;
+          :subscriberAge 30 ;
+          rdfs:label "Ken" .
+
+
+###  http://semantics.id/ns/example/film#user_lucas
+:user_lucas rdf:type owl:NamedIndividual ,
+                     :Subscriber ;
+            :friendOf :user_david ,
+                      :user_emma ;
+            :hasPlan :plan_net_basic ;
+            :likes :movie_dune_2 ,
+                   :movie_oppenheimer ,
+                   :series_bcs ;
+            :locatedIn :country_usa ;
+            :subscribedTo :platform_netflix ;
+            :watched :movie_dune_2 ,
+                     :movie_interstellar ,
+                     :movie_matrix ,
+                     :movie_oppenheimer ,
+                     :series_bcs ;
+            :wroteReview :rev_luc_1 ,
+                         :rev_luc_2 ,
+                         :rev_luc_3 ;
+            :subscriberAge 28 ;
+            rdfs:label "Lucas" .
+
+
+###  http://semantics.id/ns/example/film#user_maria
+:user_maria rdf:type owl:NamedIndividual ,
+                     :Subscriber ;
+            :friendOf :user_carmen ,
+                      :user_david ,
+                      :user_isa ;
+            :hasPlan :plan_dis_basic ,
+                     :plan_net_ad ;
+            :likes :movie_barbie ,
+                   :series_bcs ,
+                   :series_chernobyl ,
+                   :series_mh ;
+            :locatedIn :country_spain ;
+            :subscribedTo :platform_disney ,
+                          :platform_netflix ;
+            :watched :movie_barbie ,
+                     :movie_inception ,
+                     :series_bcs ,
+                     :series_chernobyl ,
+                     :series_mh ;
+            :wroteReview :rev_mar_1 ,
+                         :rev_mar_2 ,
+                         :rev_mar_3 ;
+            :subscriberAge 24 ;
+            rdfs:label "Maria" .
+
+
+###  http://semantics.id/ns/example/film#user_matei
+:user_matei rdf:type owl:NamedIndividual ,
+                     :Subscriber ;
+            :friendOf :user_alex ,
+                      :user_andrei ;
+            :hasPlan :plan_max_prem ;
+            :likes :movie_432 ,
+                   :movie_gladiator ,
+                   :movie_oppenheimer ,
+                   :series_arcane ;
+            :locatedIn :country_romania ;
+            :subscribedTo :platform_max ;
+            :watched :movie_432 ,
+                     :movie_chuck ,
+                     :movie_gladiator ,
+                     :movie_oppenheimer ,
+                     :series_arcane ;
+            :wroteReview :rev_mat_1 ,
+                         :rev_mat_2 ,
+                         :rev_mat_3 ,
+                         :rev_mat_4 ;
+            :subscriberAge 25 ;
+            rdfs:label "Matei" .
+
+
+###  http://semantics.id/ns/example/film#user_sophia
+:user_sophia rdf:type owl:NamedIndividual ,
+                      :Subscriber ;
+             :friendOf :user_emma ,
+                       :user_ken ,
+                       :user_lucas ;
+             :hasPlan :plan_dis_fam ;
+             :likes :movie_dark_knight ,
+                    :movie_spirited ,
+                    :series_arcane ,
+                    :series_chernobyl ,
+                    :series_mh ;
+             :locatedIn :country_germany ;
+             :subscribedTo :platform_disney ;
+             :watched :movie_dark_knight ,
+                      :movie_spirited ,
+                      :series_arcane ,
+                      :series_chernobyl ,
+                      :series_mh ;
+             :wroteReview :rev_sop_1 ,
+                          :rev_sop_2 ,
+                          :rev_sop_3 ,
+                          :rev_sop_4 ;
+             :subscriberAge 25 ;
+             rdfs:label "Sophia" .
 
 
 ###  http://semantics.id/ns/example/film#zendaya
