@@ -1,0 +1,266 @@
+\documentclass[a4paper,12pt]{report}
+\usepackage{algorithmic}
+\usepackage[linesnumbered,ruled,vlined]{algorithm2e}
+\usepackage[margin=2cm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage{listings} 
+\usepackage{graphicx} 
+\usepackage{color}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{verbatim}
+%\usepackage{mdframed}
+
+\newcommand{\currentdata}{14 February 2015}
+\newtheorem{example}{Example}
+
+\begin{document}
+\vspace{-5cm}
+\begin{center}
+Department of Computer Science\\
+Technical University of Cluj-Napoca\\
+\includegraphics[width=10cm]{fig/footer}
+\end{center}
+\vspace{1cm}
+%\maketitle
+\begin{center}
+\begin{Large}
+ \textbf{Knowledge Based Systems}\\
+\end{Large}
+\textit{Laboratory activity}\\
+\vspace{3cm}
+Name: Marcu Cristian Petric\\
+Group: 30441\\
+Email: marcupetric10@gmail.com\\
+\vspace{12cm}
+Teaching Assistant: Marius Adrian Stoica\\
+Stoica.Ma.Marius@student.utcluj.ro\\
+\vspace{1cm}
+\includegraphics[width=10cm]{fig/footer}
+\end{center}
+
+\tableofcontents
+
+\input{policy}
+
+%\chapter{Laboratory works}
+
+\chapter{Determine Scope}
+\textbf{Purpose:} The ontology models a modern streaming platform ecosystem. It integrates production data (creators, release dates) with a robust content catalog (Films, Series, Episodes, Age Ratings) and consumer access data (streaming platforms, subscriptions, viewing history) to support intelligent content recommendation and access querying.
+
+\vspace{0.5cm}
+\noindent\textbf{Competency Questions:}
+\begin{enumerate}
+    \item Which films and series are currently available on a specific streaming platform (e.g., Netflix)?
+    \item Which subscribers meet the age requirements to view specific ``TV-MA'' or ``R'' rated content?
+    \item How many episodes belonging to a specific series has a user watched?
+    \item What is the average rating of content within the ``Science Fiction'' genre?
+    \item Which subscribers are paying for a Premium subscription plan but haven't watched any content this month?
+\end{enumerate}
+
+
+\chapter{Consider Reuse}
+For this project, I have chosen to extend an existing ontology rather than building one from scratch.
+
+\begin{itemize}
+    \item \textbf{The ontology used:} The Film Ontology.
+    \item \textbf{Source/Link:} \url{http://semantics.id/ns/example/film/}
+    \item \textbf{Author(s):} Fajar J. Ekaputra (Contributors: Filip Kovacevic, Laura Waltersdorfer, Marta Sabou).
+    \item \textbf{Extension Strategy:} The base ontology effectively models film creation (artists, studios). I will extend it by adding a ``Consumer/Streaming'' domain to model where these films and series are hosted, the episodic nature of content, robust content classification, and user viewing habits.
+\end{itemize}
+
+
+\chapter{Enumerate Important Terms}
+The relevant terms for both the base ontology and the new extensions are listed below:
+
+\begin{itemize}
+    \item \textbf{Nouns (candidate classes):}
+    \begin{itemize}
+        \item \textit{From Base:} Film, Actor, Director, Soundtrack, Artwork, Person, Composer, FilmStudio.
+        \item \textit{New Extensions:} Series, Episode, Classification, Genre, AgeRating, Subscriber, StreamingPlatform, SubscriptionPlan.
+    \end{itemize}
+    \item \textbf{Verbs (candidate object properties):}
+    \begin{itemize}
+        \item \textit{From Base:} hasActor, hasDirector, hasCrew, prequel, sequel.
+        \item \textit{New Extensions:} availableOn, watched, likes, subscribedTo, hasPlan, belongsToSeries, hasGenre, hasAgeRating.
+    \end{itemize}
+    \item \textbf{Descriptive nouns (candidate data properties):}
+    \begin{itemize}
+        \item \textit{From Base:} releaseYear, fullName, dateOfBirth, budget.
+        \item \textit{New Extensions:} subscriberAge, subscriptionCost, imdbRating.
+    \end{itemize}
+\end{itemize}
+
+
+\chapter{Define Classes}
+The class hierarchy based on the base ontology and our streaming platform extensions, totaling exactly 40 classes to meet the project requirements:
+
+\begin{itemize}
+    \item \textbf{Artwork}
+    \begin{itemize}
+        \item Film
+        \begin{itemize}
+            \item ShortFilm \textit{(New)}
+        \end{itemize}
+        \item Series \textit{(New)}
+        \begin{itemize}
+            \item Miniseries \textit{(New)}
+        \end{itemize}
+        \item Season \textit{(New)}
+        \item Episode \textit{(New)}
+        \item Soundtrack
+        \item Trailer \textit{(New)}
+    \end{itemize}
+    \item \textbf{Classification} \textit{(New)}
+    \begin{itemize}
+        \item Genre
+        \item AgeRating \textit{(New)}
+    \end{itemize}
+    \item \textbf{Person} (\texttt{foaf:Person})
+    \begin{itemize}
+        \item Director
+        \item Composer
+        \item ScriptWriter
+        \item Producer \textit{(New)}
+        \item Cinematographer \textit{(New)}
+        \item Editor \textit{(New)}
+        \item CostumeDesigner \textit{(New)}
+        \item Performer
+        \begin{itemize}
+            \item Actor
+            \begin{itemize}
+                \item VoiceActor \textit{(New)}
+            \end{itemize}
+        \end{itemize}
+        \item Subscriber \textit{(New)}
+    \end{itemize}
+    \item \textbf{FilmStudio}
+    \item \textbf{StreamingPlatform} \textit{(New)}
+    \item \textbf{SubscriptionPlan} \textit{(New)}
+    \begin{itemize}
+        \item BasicPlan \textit{(New)}
+        \item PremiumPlan \textit{(New)}
+        \item FamilyPlan \textit{(New)}
+        \item AdSupportedPlan \textit{(New)}
+        \item StudentPlan \textit{(New)}
+    \end{itemize}
+    \item \textbf{Country} \textit{(New)}
+    \item \textbf{Review} \textit{(New)}
+    \item \textbf{Award} \textit{(New)}
+    \begin{itemize}
+        \item Oscar \textit{(New)}
+        \item Emmy \textit{(New)}
+        \begin{itemize}
+            \item BestComedy \textit{(New)}
+            \item BestDrama \textit{(New)}
+        \end{itemize}
+        \item GoldenGlobe \textit{(New)}
+        \item PalmeDOr \textit{(New)}
+    \end{itemize}
+\end{itemize}
+
+
+\chapter{Define Roles}
+
+\textbf{Object properties (relations between classes) - Total: 21}
+\begin{itemize}
+    \item \texttt{hasActor} (Film $\rightarrow$ Actor) \textit{(Base)}
+    \item \texttt{hasDirector} (Film $\rightarrow$ Director) \textit{(Base)}
+    \item \texttt{hasCrew} (Film $\rightarrow$ Person) \textit{(Base)}
+    \item \texttt{hasComposer} (Film $\rightarrow$ Composer) \textit{(Base)}
+    \item \texttt{hasScriptWriter} (Film $\rightarrow$ ScriptWriter) \textit{(Base)}
+    \item \texttt{hasPerformer} (Artwork $\rightarrow$ Performer) \textit{(Base)}
+    \item \texttt{hasGenre} (Film $\rightarrow$ Genre) \textit{(Base)}
+    \item \texttt{hasFilmStudio} (Film $\rightarrow$ FilmStudio) \textit{(Base)}
+    \item \texttt{hasSoundtrack} (Film $\rightarrow$ Soundtrack) \textit{(Base)}
+    \item \texttt{prequel} (Film $\rightarrow$ Film) \textit{(Base)}
+    \item \texttt{sequel} (Film $\rightarrow$ Film) \textit{(Base)}
+    \item \texttt{friendOf} (Person $\rightarrow$ Person) \textit{(Base)}
+    \item \texttt{knows} (Person $\rightarrow$ Person) \textit{(Base)}
+    \item \texttt{watched} (Subscriber $\rightarrow$ Artwork) \textit{(New)}
+    \item \texttt{likes} (Subscriber $\rightarrow$ Artwork) \textit{(New)}
+    \item \texttt{availableOn} (Artwork $\rightarrow$ StreamingPlatform) \textit{(New)}
+    \item \texttt{belongsToSeries} (Episode $\rightarrow$ Series) \textit{(New)}
+    \item \texttt{hasPlan} (Subscriber $\rightarrow$ SubscriptionPlan) \textit{(New)}
+    \item \texttt{subscribedTo} (Subscriber $\rightarrow$ StreamingPlatform) \textit{(New)}
+    \item \texttt{hasAgeRating} (Artwork $\rightarrow$ AgeRating) \textit{(New)}
+    \item \texttt{hasAward} (Artwork $\rightarrow$ Award) \textit{(New)}
+\end{itemize}
+
+\vspace{0.5cm}
+\noindent\textbf{Data properties (attributes) - Total: 20}
+\begin{itemize}
+    \item \texttt{budget} (Film $\rightarrow$ float) \textit{(Base)}
+    \item \texttt{dateOfBirth} (Person $\rightarrow$ date) \textit{(Base)}
+    \item \texttt{duration} (Artwork $\rightarrow$ float) \textit{(Base)}
+    \item \texttt{establishedDate} (FilmStudio $\rightarrow$ date) \textit{(Base)}
+    \item \texttt{fullName} (Person $\rightarrow$ string) \textit{(Base)}
+    \item \texttt{gender} (Person $\rightarrow$ string) \textit{(Base)}
+    \item \texttt{releaseYear} (Film $\rightarrow$ integer) \textit{(Base)}
+    \item \texttt{subscriberAge} (Subscriber $\rightarrow$ integer) \textit{(New)}
+    \item \texttt{imdbRating} (Artwork $\rightarrow$ decimal) \textit{(New)}
+    \item \texttt{subscriptionCost} (SubscriptionPlan $\rightarrow$ decimal) \textit{(New)}
+    \item \texttt{episodeNumber} (Episode $\rightarrow$ integer) \textit{(New)}
+    \item \texttt{seasonNumber} (Season $\rightarrow$ integer) \textit{(New)}
+    \item \texttt{synopsis} (Artwork $\rightarrow$ string) \textit{(New)}
+    \item \texttt{originalLanguage} (Artwork $\rightarrow$ string) \textit{(New)}
+    \item \texttt{maxSimultaneousStreams} (SubscriptionPlan $\rightarrow$ integer) \textit{(New)}
+    \item \texttt{platformURL} (StreamingPlatform $\rightarrow$ string) \textit{(New)}
+    \item \texttt{hasAds} (SubscriptionPlan $\rightarrow$ boolean) \textit{(New)}
+    \item \texttt{registrationDate} (Subscriber $\rightarrow$ date) \textit{(New)}
+    \item \texttt{awardYear} (Award $\rightarrow$ integer) \textit{(New)}
+    \item \texttt{reviewScore} (Review $\rightarrow$ integer) \textit{(New)}
+\end{itemize}
+
+\vspace{0.5cm}
+\noindent\textbf{Annotation properties:}
+\begin{itemize}
+    \item \texttt{rdfs:label} (Used for human-readable naming)
+    \item \texttt{dc:creator} (Used to track who created the ontology)
+    \item \texttt{rdfs:comment} (Used for adding descriptions to new classes)
+    \item \texttt{owl:minCardinality} (Used to specify minimum required relations)
+\end{itemize}
+
+\vspace{0.5cm}
+\noindent\textbf{Data properties (attributes):}
+\begin{itemize}
+    \item \texttt{releaseYear} (Artwork $\rightarrow$ integer)
+    \item \texttt{fullName} (Person $\rightarrow$ string)
+    \item \texttt{subscriberAge} (Subscriber $\rightarrow$ integer) \textit{(New)}
+    \item \texttt{imdbRating} (Artwork $\rightarrow$ decimal) \textit{(New)}
+    \item \texttt{subscriptionCost} (SubscriptionPlan $\rightarrow$ decimal) \textit{(New)}
+\end{itemize}
+
+\vspace{0.5cm}
+\noindent\textbf{Annotation properties:}
+\begin{itemize}
+    \item \texttt{rdfs:label} (Used for human-readable naming)
+    \item \texttt{dc:creator} (Used to track who created the ontology)
+    \item \texttt{rdfs:comment} (Used for adding descriptions to new classes)
+\end{itemize}
+
+
+\chapter{Role Constraints}
+
+\chapter{Create Instances}
+
+\chapter{Check for Anomalies}
+
+\chapter{Ontology evaluation}
+
+%\input{mycode}
+
+\bibliographystyle{plain}
+\bibliography{is}
+
+\appendix
+
+\chapter{Your code}
+
+\vspace{2cm}
+\begin{center}
+Intelligent Systems Group\\
+\includegraphics[width=10cm]{fig/footer}
+\end{center}
+
+\end{document}

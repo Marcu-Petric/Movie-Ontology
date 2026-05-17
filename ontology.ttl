@@ -185,6 +185,57 @@ xsd:date rdf:type rdfs:Datatype .
                   rdfs:range xsd:decimal ;
                   rdfs:label "subscriptionCost" .
 
+### Final 10 Extension Data Properties (To reach exactly 20)
+:episodeNumber rdf:type owl:DatatypeProperty ;
+               rdfs:domain :Episode ;
+               rdfs:range xsd:integer ;
+               rdfs:label "episodeNumber" .
+
+:seasonNumber rdf:type owl:DatatypeProperty ;
+              rdfs:domain :Season ;
+              rdfs:range xsd:integer ;
+              rdfs:label "seasonNumber" .
+
+:synopsis rdf:type owl:DatatypeProperty ;
+          rdfs:domain :Artwork ;
+          rdfs:range xsd:string ;
+          rdfs:label "synopsis" .
+
+:originalLanguage rdf:type owl:DatatypeProperty ;
+                  rdfs:domain :Artwork ;
+                  rdfs:range xsd:string ;
+                  rdfs:label "originalLanguage" .
+
+:maxSimultaneousStreams rdf:type owl:DatatypeProperty ;
+                        rdfs:domain :SubscriptionPlan ;
+                        rdfs:range xsd:integer ;
+                        rdfs:label "maxSimultaneousStreams" .
+
+:platformURL rdf:type owl:DatatypeProperty ;
+             rdfs:domain :StreamingPlatform ;
+             rdfs:range xsd:string ;
+             rdfs:label "platformURL" .
+
+:hasAds rdf:type owl:DatatypeProperty ;
+        rdfs:domain :SubscriptionPlan ;
+        rdfs:range xsd:boolean ;
+        rdfs:label "hasAds" .
+
+:registrationDate rdf:type owl:DatatypeProperty ;
+                  rdfs:domain :Subscriber ;
+                  rdfs:range xsd:date ;
+                  rdfs:label "registrationDate" .
+
+:awardYear rdf:type owl:DatatypeProperty ;
+           rdfs:domain :Award ;
+           rdfs:range xsd:integer ;
+           rdfs:label "awardYear" .
+
+:reviewScore rdf:type owl:DatatypeProperty ;
+             rdfs:domain :Review ;
+             rdfs:range xsd:integer ;
+             rdfs:label "reviewScore" .
+
 #################################################################
 #    Classes (40 Total)
 #################################################################
