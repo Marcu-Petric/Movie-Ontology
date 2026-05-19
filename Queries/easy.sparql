@@ -1,0 +1,189 @@
+PREFIX : <http://semantics.id/ns/example/film#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+
+
+##############################################################################
+#                                    Easy                                    # 
+##############################################################################
+
+# Q1: What are all the films in the catalog?
+SELECT ?film
+WHERE { ?film a :Film . }
+
+
+# Q2: What are the names (labels) of all the subscribers?
+SELECT ?subscriber ?name
+WHERE {
+  ?subscriber a :Subscriber ;
+              rdfs:label ?name .
+}
+
+# Q3: Which streaming platforms are available in Romania?
+SELECT ?platform
+WHERE {
+  ?platform :availableInCountry :country_romania ;
+  rdfs:label ?platform_name
+}
+
+# Q4: What is the URL of each streaming platform?
+SELECT ?plaform ?url 
+WHERE {
+    ?platform a :StreamingPlatform ;
+              :platformURL ?url
+}
+
+# Q5: Which subscription plans cost less than 10?
+SELECT ?plan ?cost
+WHERE {
+    ?plan :subscriptionCost ?cost .
+    FILTER(?cost < 10)
+}
+
+# Q6: Which artworks belong to the Science Fiction genre?
+SELECT ?artwork
+WHERE {
+    ?artwork :hasGenre :genre_science_fiction 
+}
+
+# OR just for film
+SELECT ?artwork
+WHERE {
+    ?artwork a :SciFiFilm
+}
+
+# Q7: What plans does Netflix offer?
+SELECT ?plan 
+WHERE {
+    ?plaform a :platform_netflix ;
+    ?offersPlan ?plan
+}
+
+##############################################################################
+#                               Medium                                       #
+##############################################################################
+
+# Q8: Which subscribers have watched artworks that their friends also liked?
+SELECT DISTINCT ?subscriber ?friend ?artwork
+WHERE {
+  ?subscriber :friendOf ?friend ;
+              :watched ?artwork .
+  ?friend :likes ?artwork .
+  FILTER(?subscriber != ?friend)
+}
+
+# Q9: Which subscribers have watched a science fiction film?
+SELECT ?subscriber
+WHERE {
+    ?movie a :Film . 
+    ?subscriber :watched ?movie .
+    ?movie :hasGenre :genre_science_fiction .
+}
+
+# Q10: Which subscribers are in countries different from where their platform's content is from?
+SELECT ?subscriber ?subContru
+WHERE {
+    ?subscriber :hasPlan ?plan .
+    ?platform :offersPlan ?plan .
+
+}
+
+# Q11: List all reviews with their score and the labelled name of the reviewed artwork.
+SELECT ?review ?score ?artworkLabel
+WHERE {
+    ?review a :Review ;
+            :reviewScore ?score ;
+            :reviewsArtwork ?artwork .
+    ?artwork rdfs:label ?artworkLabel .
+}
+
+# Q12: List all subscribers and their age, sorted from oldest to youngest, top 5.
+SELECT ?subscriber ?age
+WHERE {
+  ?subscriber :subscriberAge ?age .
+}
+ORDER BY DESC(?age)
+LIMIT 5
+
+# Q13: Find subscribers who liked an artwork but never wrote a review for it.
+SELECT ?subscriber ?artworkLabel
+WHERE {
+    ?subscriber :likes ?artwork .
+    ?artwork rdfs:label ?artworkLabel
+    FILTER NOT EXISTS {
+        ?subscriber :wroteReview ?review . 
+        ?review :reviewsArtwork ?artwork 
+    }
+}
+
+# Q14: List all episodes of Better Call Saul Season 1 with their labels.
+SELECT ?episode ?episodeLabel
+WHERE {
+    :season_bcs_1 :hasEpisode ?episode . 
+    ?episode rdfs:label ?episodeLabel
+}
+
+# Q15: For each subscriber, show their plan and the cost. If they don't have a plan, still show them.
+SELECT ?subscriber ?plan ?cost
+WHERE {
+  ?subscriber a :Subscriber .
+  OPTIONAL {
+    ?subscriber :hasPlan ?plan .
+    ?plan :subscriptionCost ?cost .
+  }
+}
+
+##############################################################################
+#                                Hard                                        #
+##############################################################################
+
+# Q16: How many artworks has each subscriber watched? Sort by most-watched first.
+SELECT ?subscriber (COUNT(?artwork) AS ?watchedCount)
+WHERE {
+    ?subscriber :watched ?artwork .
+}
+GROUP BY ?subscriber
+ORDER BY DESC(?watchedCount)
+
+# Q17: What is the average review score per genre, but only for genres with at least 2 reviews?
+SELECT ?genre (AVG(?score) AS ?avgScore) (COUNT(?review) AS ?reviewCount)
+WHERE {
+    ?artwork :hasGenre ?genre .
+    ?review :reviewsArtwork ?artwork .
+    ?review :reviewScore ?score .
+}
+GROUP BY ?genre
+HAVING (COUNT(?review) >= 2)
+ORDER BY DESC(?avgScore)
+
+# Q18: Starting from episode ep_bcs_101, what is the entire sequence of following episodes?
+SELECT ?episode
+WHERE {
+  :ep_bcs_101 :nextEpisode* ?episode .
+}
+
+# Q19: Which pairs of subscribers are friends AND both watched the same artwork?
+SELECT ?subA ?subB ?artwork
+WHERE {
+  ?subA :friendOf ?subB ;
+        :watched ?artwork .
+  ?subB :watched ?artwork .
+  FILTER(STR(?subA) < STR(?subB)) # avoids getting both (alex, matei) and (matei, alex)
+}
+
+# Q20: For each platform, what is the cheapest plan, the most expensive plan, and the average plan cost?
+SELECT ?platform
+       (MIN(?cost) AS ?cheapest)
+       (MAX(?cost) AS ?priciest)
+       (AVG(?cost) AS ?average)
+       (COUNT(?plan) AS ?planCount)
+WHERE {
+  ?platform a :StreamingPlatform ;
+            :offersPlan ?plan .
+  ?plan :subscriptionCost ?cost .
+}
+GROUP BY ?platform
+ORDER BY ?average
+
+# Q21: 
