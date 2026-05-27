@@ -2419,7 +2419,7 @@ xsd:date rdf:type rdfs:Datatype .
  ] .
 
 [ <http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled> "true"^^xsd:boolean ;
-   rdfs:comment "If a subscriber's friend likes a film, and a similar-genre film has a review with score ≥ 9, mark the film as HighlyRecommendedForUser." ;
+   rdfs:comment "If a subscriber's friend likes a film, and a similar-genre film has a review with score >= 9, mark the film as HighlyRecommendedForUser." ;
    rdfs:label "HighlyRecommendedForUser" ;
    rdf:type <http://www.w3.org/2003/11/swrl#Imp> ;
    <http://www.w3.org/2003/11/swrl#body> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;

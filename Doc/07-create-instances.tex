@@ -1,1 +1,179 @@
 \chapter{Create Instances}
+
+Individuals were populated using \textbf{Cellfie}, a Protégé plugin that transforms spreadsheet data into OWL axioms via declarative mapping rules. Three spreadsheets were used, each with its own set of rules exported as JSON for reproducibility.
+
+\vspace{0.3cm}
+\noindent The ontology was populated with a total of \textbf{152 named individuals} across the following classes:
+
+\begin{center}
+\begin{tabular}{lr}
+\hline
+\textbf{Class} & \textbf{Count} \\
+\hline
+Film & 13 \\
+Series & 4 \\
+Miniseries & 1 \\
+Season & 4 \\
+Episode & 34 \\
+Genre & 7 \\
+StreamingPlatform & 5 \\
+SubscriptionPlan & 12 \\
+Country & 6 \\
+Subscriber & 11 \\
+Review & 36 \\
+\hline
+\textbf{Total} & \textbf{133} \\
+\hline
+\end{tabular}
+\end{center}
+
+\noindent\textit{Note: The remaining individuals belong to the base TUW ontology (films, actors, directors, etc.) imported from the original Film Ontology.}
+
+\vspace{0.5cm}
+\section*{Spreadsheet 1 — Platforms and Plans (\texttt{platforms\_and\_plans.xlsx})}
+
+This spreadsheet defines streaming platforms, their available countries, offered plans, and plan attributes. Three Cellfie rules were used:
+
+\begin{itemize}
+    \item \textbf{Rule 1 — StreamingPlatform:} Creates platform individuals with their URL and country/plan links.
+    \begin{quote}\small
+    \texttt{Individual: @A* \quad Types: StreamingPlatform}\\
+    \texttt{Annotations: rdfs:label @B*}\\
+    \texttt{Facts: platformURL @C*(xsd:string),}\\
+    \texttt{\phantom{Facts: }availableInCountry @D*(mm:entityIRI),}\\
+    \texttt{\phantom{Facts: }offersPlan @F*(mm:entityIRI)}
+    \end{quote}
+
+    \item \textbf{Rule 2 — SubscriptionPlan:} Creates plan individuals with cost, stream limit, and ads flag.
+    \begin{quote}\small
+    \texttt{Individual: @F* \quad Types: @G*}\\
+    \texttt{Facts: subscriptionCost @H*(xsd:decimal),}\\
+    \texttt{\phantom{Facts: }maxSimultaneousStreams @I*(xsd:integer),}\\
+    \texttt{\phantom{Facts: }hasAds @J*(xsd:boolean)}
+    \end{quote}
+
+    \item \textbf{Rule 3 — Country:} Creates country individuals with labels.
+    \begin{quote}\small
+    \texttt{Individual: @D* \quad Types: Country}\\
+    \texttt{Annotations: rdfs:label @E*}
+    \end{quote}
+\end{itemize}
+
+\vspace{0.3cm}
+\noindent Example assertions generated:
+\begin{itemize}
+    \item \texttt{platform\_netflix} \texttt{availableInCountry} \texttt{country\_romania}
+    \item \texttt{platform\_netflix} \texttt{offersPlan} \texttt{plan\_net\_prem}
+    \item \texttt{plan\_net\_prem} \texttt{subscriptionCost} \texttt{15.99}
+    \item \texttt{plan\_net\_prem} \texttt{hasAds} \texttt{false}
+\end{itemize}
+
+\vspace{0.5cm}
+\section*{Spreadsheet 2 — TV Series Expansion (\texttt{tv\_series\_expansion.xlsx})}
+
+This spreadsheet defines films, series, seasons, and episodes along with their genres, origin countries, and episode ordering. Six Cellfie rules were used:
+
+\begin{itemize}
+    \item \textbf{Rule 1 — Artwork type and label:} Creates individuals with their class type and human-readable label.
+    \begin{quote}\small
+    \texttt{Individual: @A* \quad Types: @C*}\\
+    \texttt{Annotations: rdfs:label @B*}
+    \end{quote}
+
+    \item \textbf{Rule 2 — hasOriginCountry:} Links artworks to their country of origin.
+    \begin{quote}\small
+    \texttt{Individual: @A*}\\
+    \texttt{Facts: hasOriginCountry @D*(mm:SkipIfEmptyLocation)}
+    \end{quote}
+
+    \item \textbf{Rule 3 — hasGenre:} Links artworks to their genre.
+    \begin{quote}\small
+    \texttt{Individual: @A*}\\
+    \texttt{Facts: hasGenre @E*(mm:SkipIfEmptyLocation)}
+    \end{quote}
+
+    \item \textbf{Rule 4 — hasSeason:} Links series to their seasons.
+    \begin{quote}\small
+    \texttt{Individual: @F*(mm:SkipIfEmptyLocation)}\\
+    \texttt{Facts: hasSeason @A*}
+    \end{quote}
+
+    \item \textbf{Rule 5 — hasEpisode:} Links seasons to their episodes.
+    \begin{quote}\small
+    \texttt{Individual: @G*(mm:SkipIfEmptyLocation)}\\
+    \texttt{Facts: hasEpisode @A*}
+    \end{quote}
+
+    \item \textbf{Rule 6 — nextEpisode:} Chains episodes in order.
+    \begin{quote}\small
+    \texttt{Individual: @A*}\\
+    \texttt{Facts: nextEpisode @H*(mm:SkipIfEmptyLocation)}
+    \end{quote}
+\end{itemize}
+
+\vspace{0.3cm}
+\noindent Example assertions generated:
+\begin{itemize}
+    \item \texttt{series\_chernobyl} \texttt{hasSeason} \texttt{season\_chernobyl\_1}
+    \item \texttt{season\_chernobyl\_1} \texttt{hasEpisode} \texttt{ep\_cher\_1}
+    \item \texttt{ep\_cher\_1} \texttt{nextEpisode} \texttt{ep\_cher\_2}
+    \item \texttt{movie\_inception} \texttt{hasGenre} \texttt{genre\_science\_fiction}
+\end{itemize}
+
+\vspace{0.5cm}
+\section*{Spreadsheet 3 — Users and Social (\texttt{users\_and\_social.xlsx})}
+
+This spreadsheet defines subscribers, their subscriptions, social connections, viewing history, and reviews. Six Cellfie rules were used:
+
+\begin{itemize}
+    \item \textbf{Rule 1 — Subscriber:} Creates subscriber individuals with age, country, platform and plan.
+    \begin{quote}\small
+    \texttt{Individual: @A* \quad Types: Subscriber}\\
+    \texttt{Annotations: rdfs:label @B*}\\
+    \texttt{Facts: subscriberAge @C*(xsd:integer),}\\
+    \texttt{\phantom{Facts: }locatedIn @D*(mm:SkipIfEmptyLocation),}\\
+    \texttt{\phantom{Facts: }subscribedTo @E*(mm:SkipIfEmptyLocation),}\\
+    \texttt{\phantom{Facts: }hasPlan @F*(mm:SkipIfEmptyLocation)}
+    \end{quote}
+
+    \item \textbf{Rule 2 — friendOf:} Links subscribers to their friends.
+    \begin{quote}\small
+    \texttt{Individual: @A*}\\
+    \texttt{Facts: friendOf @G*(mm:SkipIfEmptyLocation)}
+    \end{quote}
+
+    \item \textbf{Rule 3 — watched:} Records which artworks a subscriber has watched.
+    \begin{quote}\small
+    \texttt{Individual: @A*}\\
+    \texttt{Facts: watched @H*(mm:SkipIfEmptyLocation)}
+    \end{quote}
+
+    \item \textbf{Rule 4 — likes:} Records which artworks a subscriber likes.
+    \begin{quote}\small
+    \texttt{Individual: @A*}\\
+    \texttt{Facts: likes @I*(mm:SkipIfEmptyLocation)}
+    \end{quote}
+
+    \item \textbf{Rule 5 — wroteReview:} Links subscribers to their written reviews.
+    \begin{quote}\small
+    \texttt{Individual: @A*}\\
+    \texttt{Facts: wroteReview @J*(mm:SkipIfEmptyLocation)}
+    \end{quote}
+
+    \item \textbf{Rule 6 — Review:} Creates review individuals with score and artwork link.
+    \begin{quote}\small
+    \texttt{Individual: @J*(mm:SkipIfEmptyLocation) \quad Types: Review}\\
+    \texttt{Facts: reviewScore @K*(xsd:integer),}\\
+    \texttt{\phantom{Facts: }reviewsArtwork @H*(mm:SkipIfEmptyLocation)}
+    \end{quote}
+\end{itemize}
+
+\vspace{0.3cm}
+\noindent Example assertions generated:
+\begin{itemize}
+    \item \texttt{user\_alex} \texttt{subscribedTo} \texttt{platform\_netflix}
+    \item \texttt{user\_alex} \texttt{friendOf} \texttt{user\_matei}
+    \item \texttt{user\_alex} \texttt{watched} \texttt{movie\_inception}
+    \item \texttt{rev\_alex\_1} \texttt{reviewScore} \texttt{9}
+    \item \texttt{rev\_alex\_1} \texttt{reviewsArtwork} \texttt{movie\_dune\_2}
+\end{itemize}

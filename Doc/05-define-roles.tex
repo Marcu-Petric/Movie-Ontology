@@ -1,6 +1,6 @@
 \chapter{Define Roles}
 
-\textbf{Object properties (relations between classes) - Total: 21}
+\textbf{Object properties (relations between classes) - Total: 37}
 \begin{itemize}
     \item \texttt{hasActor} (Film $\rightarrow$ Actor) \textit{(Base)}
     \item \texttt{hasDirector} (Film $\rightarrow$ Director) \textit{(Base)}
@@ -18,11 +18,29 @@
     \item \texttt{watched} (Subscriber $\rightarrow$ Artwork) \textit{(New)}
     \item \texttt{likes} (Subscriber $\rightarrow$ Artwork) \textit{(New)}
     \item \texttt{availableOn} (Artwork $\rightarrow$ StreamingPlatform) \textit{(New)}
+    \item \texttt{availableInCountry} (StreamingPlatform $\rightarrow$ Country) \textit{(New)}
+    \item \texttt{offersPlan} (StreamingPlatform $\rightarrow$ SubscriptionPlan) \textit{(New)}
+    \item \texttt{hasOriginCountry} (Artwork $\rightarrow$ Country) \textit{(New)}
+    \item \texttt{locatedIn} (Subscriber $\rightarrow$ Country) \textit{(New)}
     \item \texttt{belongsToSeries} (Episode $\rightarrow$ Series) \textit{(New)}
+    \item \texttt{hasSeason} (Series $\rightarrow$ Season) \textit{(New)}
+    \item \texttt{hasEpisode} (Season $\rightarrow$ Episode) \textit{(New)}
+    \item \texttt{nextEpisode} (Episode $\rightarrow$ Episode) \textit{(New)}
     \item \texttt{hasPlan} (Subscriber $\rightarrow$ SubscriptionPlan) \textit{(New)}
     \item \texttt{subscribedTo} (Subscriber $\rightarrow$ StreamingPlatform) \textit{(New)}
     \item \texttt{hasAgeRating} (Artwork $\rightarrow$ AgeRating) \textit{(New)}
     \item \texttt{hasAward} (Artwork $\rightarrow$ Award) \textit{(New)}
+    \item \texttt{wroteReview} (Subscriber $\rightarrow$ Review) \textit{(New)}
+    \item \texttt{reviewsArtwork} (Review $\rightarrow$ Artwork) \textit{(New)}
+    \item \texttt{hasCinematographer} (Film $\rightarrow$ Cinematographer) \textit{(New)}
+    \item \texttt{hasEditor} (Film $\rightarrow$ Editor) \textit{(New)}
+    \item \texttt{hasProducer} (Film $\rightarrow$ Producer) \textit{(New)}
+    \item \texttt{hasCostumeDesigner} (Film $\rightarrow$ CostumeDesigner) \textit{(New)}
+    \item \texttt{coStarredWith} (Actor $\rightarrow$ Actor) \textit{(New)}
+    \item \texttt{inSameUniverse} (Artwork $\rightarrow$ Artwork) \textit{(New)}
+    \item \texttt{recommendsTo} (Subscriber $\rightarrow$ Subscriber) \textit{(New)}
+    \item \texttt{coWatched} (Subscriber $\rightarrow$ Subscriber) \textit{(New)}
+    \item \texttt{inProgress} (Subscriber $\rightarrow$ Episode) \textit{(New)}
 \end{itemize}
 
 \vspace{0.5cm}

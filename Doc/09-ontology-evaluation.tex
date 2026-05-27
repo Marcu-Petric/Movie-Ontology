@@ -1,3 +1,108 @@
-\chapter{Ontology evaluation}
+\chapter{Ontology Evaluation}
 
-%\input{mycode}
+The ontology was evaluated by translating the competency questions defined in Chapter 1 into SPARQL queries and measuring the quality of the results using standard Information Retrieval metrics. Five queries were selected covering a range of complexity levels, and one query was executed both with and without the reasoner active to demonstrate the impact of inference.
+
+\section*{Evaluation Metrics}
+
+The following metrics were used to assess each query:
+
+\begin{itemize}
+    \item \textbf{Precision} -- measures how many of the returned results are actually correct:
+    \[
+    \text{Precision} = \frac{\text{True Positives}}{\text{True Positives} + \text{False Positives}} = \frac{\text{Correct results returned}}{\text{Total results returned}}
+    \]
+
+    \item \textbf{Recall} -- measures how many of the expected correct results were actually returned:
+    \[
+    \text{Recall} = \frac{\text{True Positives}}{\text{True Positives} + \text{False Negatives}} = \frac{\text{Correct results returned}}{\text{Total expected results}}
+    \]
+
+    \item \textbf{F1 Score} -- the harmonic mean of Precision and Recall, providing a single combined measure:
+    \[
+    F_1 = 2 \times \frac{\text{Precision} \times \text{Recall}}{\text{Precision} + \text{Recall}}
+    \]
+
+    \item \textbf{Accuracy} -- the proportion of competency questions answered correctly overall:
+    \[
+    \text{Accuracy} = \frac{\text{Correctly answered CQs}}{\text{Total CQs}}
+    \]
+\end{itemize}
+
+\noindent In this context, a result is considered a \textit{True Positive} if it appears in both the query output and the manually verified ground truth. A \textit{False Positive} is a result returned by the query that should not have been. A \textit{False Negative} is an expected result that the query failed to return.
+
+\section*{Queries and Results}
+
+\subsection*{Q1 -- All Films in the Catalog}
+\begin{quote}\small
+\texttt{SELECT ?film WHERE \{ ?film a :Film . \}}
+\end{quote}
+Returns all individuals asserted as \texttt{Film}, including the 13 films added via Cellfie and the 5 films inherited from the base TUW ontology. Ground truth was verified manually from both sources.
+
+\subsection*{Q2 -- Subscribers Who Watched at Least One Sci-Fi Film}
+\begin{quote}\small
+\texttt{SELECT DISTINCT ?subscriber WHERE \{}\\
+\texttt{\phantom{xx}?subscriber a :Subscriber ; :watched ?film .}\\
+\texttt{\phantom{xx}?film :hasGenre :genre\_science\_fiction .}\\
+\texttt{\}}
+\end{quote}
+Joins subscriber watching history with genre assertions. Ground truth was verified by manually cross-referencing the \texttt{users\_and\_social.xlsx} data with films that have \texttt{genre\_science\_fiction}.
+
+\subsection*{Q3 -- Reviews with Score $\geq$ 9}
+\begin{quote}\small
+\texttt{SELECT ?review ?score WHERE \{}\\
+\texttt{\phantom{xx}?review a :Review ; :reviewScore ?score .}\\
+\texttt{\phantom{xx}FILTER(?score >= 9)}\\
+\texttt{\}}
+\end{quote}
+Applies a numeric filter on a data property. Ground truth was computed by counting all review individuals with a \texttt{reviewScore} of 9 or 10 in the ontology.
+
+\subsection*{Q4 -- SciFiFilm Instances (Reasoning Validation)}
+\begin{quote}\small
+\texttt{SELECT ?film WHERE \{ ?film a :SciFiFilm . \}}
+\end{quote}
+This query was executed twice -- once without the reasoner and once with Pellet active in Snap SPARQL. \texttt{SciFiFilm} is a defined class; its instances are never asserted explicitly but are derived by the reasoner from the \texttt{hasGenre} restriction.
+
+\subsection*{Q5 -- Friend Pairs Who Co-Watched an Artwork}
+\begin{quote}\small
+\texttt{SELECT DISTINCT ?subA ?subB ?artwork WHERE \{}\\
+\texttt{\phantom{xx}?subA :friendOf ?subB ; :watched ?artwork .}\\
+\texttt{\phantom{xx}?subB :watched ?artwork .}\\
+\texttt{\phantom{xx}FILTER(STR(?subA) < STR(?subB))}\\
+\texttt{\}}
+\end{quote}
+This query was executed in Snap SPARQL to leverage the symmetric inference of \texttt{friendOf}. Running it in the standard SPARQL tab (without inference) returned only 16 results because reverse-direction friend assertions are not explicitly stored -- they are derived by the reasoner from the symmetric property characteristic. The ground truth of 34 includes inferred season-watching derived from SWRL Rule 3, which propagates series-level watching to season-level watching.
+
+\section*{Results}
+
+\begin{center}
+\begin{tabular}{lrrrrrrrr}
+\hline
+\textbf{Query} & \textbf{Exp.} & \textbf{Ret.} & \textbf{Correct} & \textbf{FP} & \textbf{FN} & \textbf{Prec.} & \textbf{Recall} & \textbf{F1} \\
+\hline
+Q1 -- All Films & 18 & 18 & 18 & 0 & 0 & 1.000 & 1.000 & 1.000 \\
+Q2 -- Watched sci-fi & 8 & 8 & 8 & 0 & 0 & 1.000 & 1.000 & 1.000 \\
+Q3 -- Reviews $\geq$ 9 & 29 & 29 & 29 & 0 & 0 & 1.000 & 1.000 & 1.000 \\
+Q4a -- SciFiFilm (no reasoner) & 6 & 0 & 0 & 0 & 6 & -- & 0.000 & 0.000 \\
+Q4b -- SciFiFilm (with reasoner) & 6 & 6 & 6 & 0 & 0 & 1.000 & 1.000 & 1.000 \\
+Q5 -- Co-watched (Snap SPARQL) & 34 & 34 & 34 & 0 & 0 & 1.000 & 1.000 & 1.000 \\
+\hline
+\end{tabular}
+\end{center}
+
+\vspace{0.3cm}
+\noindent\textbf{Summary:}
+\begin{itemize}
+    \item \textbf{Average Precision:} 1.000 (excluding Q4a where Precision is undefined)
+    \item \textbf{Average Recall:} 1.000 (excluding Q4a)
+    \item \textbf{Average F1:} 1.000 (excluding Q4a)
+    \item \textbf{Overall Accuracy:} 5/5 = \textbf{100\%} (treating Q4 as one CQ, answered correctly when the reasoner is active)
+    \item \textbf{Accuracy without reasoner:} 4/5 = \textbf{80\%}
+\end{itemize}
+
+\section*{Reasoning Validation}
+
+The comparison between Q4a and Q4b directly demonstrates the necessity of the OWL reasoner. Without inference, the query returns zero results because \texttt{SciFiFilm} instances are never explicitly asserted -- the class is defined by a restriction and populated entirely through classification. With Pellet active, six films are correctly identified.
+
+Similarly, Q5 demonstrates the value of property characteristic reasoning: the \texttt{friendOf} symmetric property doubles the available friendship graph without requiring redundant data assertions, but only surfaces when the reasoner is engaged through Snap SPARQL.
+
+\noindent These results confirm that the ontology is both correct and complete with respect to its competency questions, and that automated reasoning provides a meaningful extension of the explicitly asserted knowledge.

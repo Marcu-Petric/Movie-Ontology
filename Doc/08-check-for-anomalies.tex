@@ -1,1 +1,19 @@
 \chapter{Check for Anomalies}
+
+After populating the ontology with individuals and defining all role constraints and SWRL rules, the ontology was validated using the \textbf{Pellet} reasoner in Protégé.
+
+\vspace{0.3cm}
+\noindent The following checks were performed:
+
+\begin{itemize}
+    \item \textbf{Consistency check:} The reasoner confirmed the ontology is \textit{consistent} — no contradictory axioms were found. No individual was simultaneously asserted to belong to two disjoint classes.
+
+    \item \textbf{Unsatisfiable classes:} No unsatisfiable classes were detected. All defined classes (\texttt{SciFiFilm}, \texttt{EnsembleFilm}, \texttt{AwardWinningArtwork}) and inferred classes (\texttt{AdultSubscriber}, \texttt{PositiveReview}, \texttt{AdFreePlan}, \texttt{FullAccessSubscriber}) were satisfiable and populated with at least one individual after reasoning.
+
+    \item \textbf{Unintended inferences:} The \texttt{AdultSubscriber} equivalence anomaly was detected and corrected during development — an accidental \texttt{EquivalentTo: Subscriber} axiom caused all subscribers to be classified as \texttt{AdultSubscriber}. This was removed, and the classification is now driven exclusively by the SWRL rule.
+
+    \item \textbf{Property characteristic validation:} The symmetric property \texttt{friendOf} was verified to correctly infer reverse-direction assertions. The transitive property \texttt{sequel} was verified to infer indirect lineage between films. The irreflexive property \texttt{recommendsTo} correctly prevents self-recommendation.
+\end{itemize}
+
+\vspace{0.3cm}
+\noindent No anomalies remain in the final version of the ontology.

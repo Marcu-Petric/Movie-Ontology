@@ -7,3 +7,14 @@ For this project, I have chosen to extend an existing ontology rather than build
     \item \textbf{Author(s):} Fajar J. Ekaputra (Contributors: Filip Kovacevic, Laura Waltersdorfer, Marta Sabou).
     \item \textbf{Extension Strategy:} The base ontology effectively models film creation (artists, studios). I will extend it by adding a ``Consumer/Streaming'' domain to model where these films and series are hosted, the episodic nature of content, robust content classification, and user viewing habits.
 \end{itemize}
+
+\vspace{0.5cm}
+\noindent\textbf{Base Ontology Description:}
+
+The original Film Ontology, developed for the Information Systems and Semantic Web course at TU Wien, models the production side of the film industry. The following classes and properties from the base ontology are reused directly:
+
+\begin{itemize}
+    \item \textbf{Classes:} \texttt{Artwork}, \texttt{Film}, \texttt{Soundtrack}, \texttt{Trailer}, \texttt{FilmStudio}, \texttt{Genre}, \texttt{Performer}, \texttt{Actor}, \texttt{Director}, \texttt{Composer}, \texttt{ScriptWriter}, \texttt{Producer}, \texttt{Cinematographer}, \texttt{Editor}, \texttt{CostumeDesigner}, \texttt{foaf:Person}
+    \item \textbf{Object properties:} \texttt{hasActor}, \texttt{hasDirector}, \texttt{hasCrew}, \texttt{hasComposer}, \texttt{hasScriptWriter}, \texttt{hasPerformer}, \texttt{hasGenre}, \texttt{hasFilmStudio}, \texttt{hasSoundtrack}, \texttt{prequel}, \texttt{sequel}, \texttt{friendOf}, \texttt{foaf:knows}
+    \item \textbf{Data properties:} \texttt{budget}, \texttt{dateOfBirth}, \texttt{duration}, \texttt{establishedDate}, \texttt{fullName}, \texttt{gender}, \texttt{releaseYear}
+\end{itemize}

@@ -1,5 +1,5 @@
 \chapter{Define Classes}
-The class hierarchy based on the base ontology and our streaming platform extensions, totaling exactly 40 classes to meet the project requirements:
+The class hierarchy based on the base ontology and our streaming platform extensions, totaling 46 classes:
 
 \begin{itemize}
     \item \textbf{Artwork}
@@ -7,6 +7,8 @@ The class hierarchy based on the base ontology and our streaming platform extens
         \item Film
         \begin{itemize}
             \item ShortFilm \textit{(New)}
+            \item SciFiFilm \textit{(New, Defined)}
+            \item EnsembleFilm \textit{(New, Defined)}
         \end{itemize}
         \item Series \textit{(New)}
         \begin{itemize}
@@ -16,12 +18,10 @@ The class hierarchy based on the base ontology and our streaming platform extens
         \item Episode \textit{(New)}
         \item Soundtrack
         \item Trailer \textit{(New)}
+        \item AwardWinningArtwork \textit{(New, Defined)}
     \end{itemize}
-    \item \textbf{Classification} \textit{(New)}
-    \begin{itemize}
-        \item Genre
-        \item AgeRating \textit{(New)}
-    \end{itemize}
+    \item \textbf{Genre}
+    \item \textbf{AgeRating} \textit{(New)}
     \item \textbf{Person} (\texttt{foaf:Person})
     \begin{itemize}
         \item Director
@@ -39,6 +39,10 @@ The class hierarchy based on the base ontology and our streaming platform extens
             \end{itemize}
         \end{itemize}
         \item Subscriber \textit{(New)}
+        \begin{itemize}
+            \item AdultSubscriber \textit{(New, Inferred)}
+            \item FullAccessSubscriber \textit{(New, Inferred)}
+        \end{itemize}
     \end{itemize}
     \item \textbf{FilmStudio}
     \item \textbf{StreamingPlatform} \textit{(New)}
@@ -49,9 +53,13 @@ The class hierarchy based on the base ontology and our streaming platform extens
         \item FamilyPlan \textit{(New)}
         \item AdSupportedPlan \textit{(New)}
         \item StudentPlan \textit{(New)}
+        \item AdFreePlan \textit{(New, Inferred)}
     \end{itemize}
     \item \textbf{Country} \textit{(New)}
     \item \textbf{Review} \textit{(New)}
+    \begin{itemize}
+        \item PositiveReview \textit{(New, Inferred)}
+    \end{itemize}
     \item \textbf{Award} \textit{(New)}
     \begin{itemize}
         \item Oscar \textit{(New)}
@@ -64,3 +72,6 @@ The class hierarchy based on the base ontology and our streaming platform extens
         \item PalmeDOr \textit{(New)}
     \end{itemize}
 \end{itemize}
+
+\vspace{0.3cm}
+\noindent Classes marked \textit{Defined} use OWL restrictions and are automatically classified by the reasoner. Classes marked \textit{Inferred} are populated by SWRL rules.

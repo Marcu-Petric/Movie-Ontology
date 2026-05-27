@@ -5,3 +5,35 @@
 Intelligent Systems Group\\
 \includegraphics[width=10cm]{fig/footer}
 \end{center}
+
+
+\lstdefinelanguage{Turtle}{
+  keywords={@prefix, @base, a},
+  keywordstyle=\color{blue}\bfseries,
+  morestring=[b]",
+  morestring=[b]',
+  stringstyle=\color{red},
+  morecomment=[l]{\#},
+  commentstyle=\color{gray}\itshape,
+  sensitive=true
+}
+ 
+\lstset{
+  language=Turtle,
+  basicstyle=\ttfamily\scriptsize,
+  breaklines=true,
+  breakatwhitespace=false,
+  postbreak=\mbox{\textcolor{gray}{$\hookrightarrow$}\space},
+  columns=fullflexible,
+  keepspaces=true,
+  showstringspaces=false,
+  frame=single,
+  numbers=left,
+  numberstyle=\tiny\color{gray},
+  numbersep=5pt,
+  xleftmargin=15pt,
+  inputencoding=utf8,
+  extendedchars=true
+}
+ 
+\lstinputlisting{../ontology.ttl}

@@ -1,12 +1,38 @@
 \chapter{Determine Scope}
+
 \textbf{Purpose:} The ontology models a modern streaming platform ecosystem. It integrates production data (creators, release dates) with a robust content catalog (Films, Series, Episodes, Age Ratings) and consumer access data (streaming platforms, subscriptions, viewing history) to support intelligent content recommendation and access querying.
 
 \vspace{0.5cm}
-\noindent\textbf{Competency Questions:}
+\noindent\textbf{Competency Questions (SPARQL):}
 \begin{enumerate}
-    \item Which films and series are currently available on a specific streaming platform (e.g., Netflix)?
-    \item Which subscribers meet the age requirements to view specific ``TV-MA'' or ``R'' rated content?
-    \item How many episodes belonging to a specific series has a user watched?
-    \item What is the average rating of content within the ``Science Fiction'' genre?
-    \item Which subscribers are paying for a Premium subscription plan but haven't watched any content this month?
+    \item What are all the films in the catalog?
+    \item What are the names of all the subscribers?
+    \item Which streaming platforms are available in Romania?
+    \item What is the URL of each streaming platform?
+    \item Which subscription plans cost less than \$10?
+    \item Which artworks belong to the Science Fiction genre?
+    \item What plans does Netflix offer?
+    \item Which subscribers have watched artworks that their friends also liked?
+    \item Which subscribers have watched at least one science fiction film?
+    \item Which subscribers are subscribed to a platform that is not available in their country?
+    \item What are all reviews with their score and the name of the reviewed artwork?
+    \item Who are the five oldest subscribers?
+    \item Which subscribers liked an artwork but never wrote a review for it?
+    \item What are all the episodes of \textit{Better Call Saul} Season 1?
+    \item For each subscriber, what plan are they on and what does it cost — including subscribers with no plan?
+    \item How many artworks has each subscriber watched, sorted from most to least?
+    \item What is the average review score per genre, for genres with at least two reviews?
+    \item Starting from the first episode of \textit{Better Call Saul} Season 1, what is the full episode sequence?
+    \item Which pairs of subscribers are friends and have both watched the same artwork?
+    \item For each platform, what is the cheapest, most expensive, and average plan cost?
+    \item Which subscribers are older than 25?
+    \item Which reviews have a score of 7 or above?
+    \item Which subscription plans have no advertisements?
+    \item If a subscriber has watched a series, which seasons have they also implicitly watched?
+    \item Which artworks should be recommended to a subscriber based on what their friends like?
+    \item Which artworks should be recommended to a subscriber based on shared genre preferences?
+    \item Which subscribers have both a premium plan and are located in a country where their platform is available?
+    \item Which films should be recommended to a subscriber because a friend likes the same genre and the film has a score of at least 9?
+    \item Which pairs of subscribers are friends who have watched the same artwork?
+    \item For a subscriber who has watched at least one episode in a season, which other episodes in that season are considered in progress? 
 \end{enumerate}

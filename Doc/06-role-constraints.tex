@@ -1,1 +1,102 @@
 \chapter{Role Constraints}
+
+\section*{Stage 6a — OWL Restrictions (Defined Classes)}
+
+To enable automated reasoning, three classes are defined using OWL restrictions. These are \textit{defined classes} — the reasoner automatically classifies any individual that satisfies the conditions, without requiring explicit assertion.
+
+\begin{itemize}
+    \item \textbf{SciFiFilm} — Value restriction:
+    \begin{itemize}
+        \item A \texttt{Film} that \texttt{hasGenre} exactly \texttt{genre\_science\_fiction}.
+        \item \textit{Restriction type:} \texttt{owl:hasValue}
+        \item \textit{DL notation:} $\texttt{SciFiFilm} \equiv \texttt{Film} \sqcap \exists\texttt{hasGenre}.\{\texttt{genre\_science\_fiction}\}$
+        \item \textit{Example:} \texttt{movie\_inception} is asserted as a \texttt{Film} with \texttt{hasGenre genre\_science\_fiction}. After running the reasoner, it is automatically classified as \texttt{SciFiFilm}.
+    \end{itemize}
+
+    \item \textbf{EnsembleFilm} — Cardinality restriction:
+    \begin{itemize}
+        \item A \texttt{Film} that \texttt{hasActor} at least 3 instances of \texttt{Actor}.
+        \item \textit{Restriction type:} \texttt{owl:minQualifiedCardinality 3}
+        \item \textit{DL notation:} $\texttt{EnsembleFilm} \equiv \texttt{Film} \sqcap (\geq 3\ \texttt{hasActor}.\texttt{Actor})$
+        \item \textit{Example:} Any film with three or more actor assertions is automatically inferred as an \texttt{EnsembleFilm} by the reasoner.
+    \end{itemize}
+
+    \item \textbf{AwardWinningArtwork} — Existential restriction:
+    \begin{itemize}
+        \item An \texttt{Artwork} that \texttt{hasAward} some \texttt{Award}.
+        \item \textit{Restriction type:} \texttt{owl:someValuesFrom}
+        \item \textit{DL notation:} $\texttt{AwardWinningArtwork} \equiv \texttt{Artwork} \sqcap \exists\texttt{hasAward}.\texttt{Award}$
+        \item \textit{Example:} Any artwork with at least one \texttt{hasAward} assertion is automatically classified as \texttt{AwardWinningArtwork}.
+    \end{itemize}
+\end{itemize}
+
+\section*{Stage 6b — SWRL Rules}
+
+Ten SWRL rules were defined to derive new knowledge from existing facts. Rules are executed using the Drools rule engine inside the SWRLTab in Protégé, and the inferred facts are subsequently transferred back to the OWL ontology for reasoning.
+
+\begin{itemize}
+
+    \item \textbf{Rule 1 — AdultSubscriber:} Classifies subscribers older than 25.
+    \begin{quote}\small
+    \texttt{Subscriber(?s) \^{} subscriberAge(?s, ?age) \^{} swrlb:greaterThan(?age, 25)}\\
+    \texttt{-> AdultSubscriber(?s)}
+    \end{quote}
+
+    \item \textbf{Rule 2 — PositiveReview:} Classifies reviews with a score of 7 or above.
+    \begin{quote}\small
+    \texttt{Review(?r) \^{} reviewScore(?r, ?score) \^{} swrlb:greaterThanOrEqual(?score, 7)}\\
+    \texttt{-> PositiveReview(?r)}
+    \end{quote}
+
+    \item \textbf{Rule 3 — Watched season:} If a subscriber watched a series, they implicitly watched its seasons.
+    \begin{quote}\small
+    \texttt{Subscriber(?s) \^{} watched(?s, ?series) \^{} Series(?series)}\\
+    \texttt{\^{} hasSeason(?series, ?season) -> watched(?s, ?season)}
+    \end{quote}
+
+    \item \textbf{Rule 4 — AdFreePlan:} Classifies plans with no advertisements.
+    \begin{quote}\small
+    \texttt{SubscriptionPlan(?p) \^{} hasAds(?p, false) -> AdFreePlan(?p)}
+    \end{quote}
+
+    \item \textbf{Rule 5 — recommendsTo (friend-based):} Recommends artworks liked by a subscriber's friends.
+    \begin{quote}\small
+    \texttt{Subscriber(?a) \^{} friendOf(?a, ?b) \^{} likes(?b, ?x) -> recommendsTo(?x, ?a)}
+    \end{quote}
+
+    \item \textbf{Rule 6 — recommendsTo (genre-based):} Recommends artworks of the same genre as something a subscriber already liked.
+    \begin{quote}\small
+    \texttt{Subscriber(?s) \^{} likes(?s, ?a1) \^{} hasGenre(?a1, ?g)}\\
+    \texttt{\^{} hasGenre(?a2, ?g) -> recommendsTo(?a2, ?s)}
+    \end{quote}
+
+    \item \textbf{Rule 7 — FullAccessSubscriber:} Classifies subscribers on a premium plan whose platform is available in their country.
+    \begin{quote}\small
+    \texttt{Subscriber(?s) \^{} hasPlan(?s, ?p) \^{} PremiumPlan(?p)}\\
+    \texttt{\^{} subscribedTo(?s, ?platform) \^{} offersPlan(?platform, ?p)}\\
+    \texttt{\^{} locatedIn(?s, ?c) \^{} availableInCountry(?platform, ?c)}\\
+    \texttt{-> FullAccessSubscriber(?s)}
+    \end{quote}
+
+    \item \textbf{Rule 8 — recommendsTo (high-rated genre match):} Recommends films in the same genre liked by a friend, with a review score of at least 9.
+    \begin{quote}\small
+    \texttt{Subscriber(?s) \^{} friendOf(?s, ?f) \^{} likes(?f, ?a1) \^{} hasGenre(?a1, ?g)}\\
+    \texttt{\^{} Film(?film) \^{} hasGenre(?film, ?g) \^{} Review(?r)}\\
+    \texttt{\^{} reviewsArtwork(?r, ?film) \^{} reviewScore(?r, ?score)}\\
+    \texttt{\^{} swrlb:greaterThanOrEqual(?score, 9) -> recommendsTo(?film, ?s)}
+    \end{quote}
+
+    \item \textbf{Rule 9 — coWatched:} Infers that two friends who watched the same artwork have co-watched it.
+    \begin{quote}\small
+    \texttt{Subscriber(?a) \^{} Subscriber(?b) \^{} friendOf(?a, ?b)}\\
+    \texttt{\^{} watched(?a, ?x) \^{} watched(?b, ?x) -> coWatched(?a, ?b)}
+    \end{quote}
+
+    \item \textbf{Rule 10 — inProgress:} Marks episodes as in-progress for a subscriber who has watched another episode in the same season.
+    \begin{quote}\small
+    \texttt{Subscriber(?s) \^{} watched(?s, ?e1) \^{} Episode(?e1)}\\
+    \texttt{\^{} hasEpisode(?season, ?e1) \^{} hasEpisode(?season, ?e2)}\\
+    \texttt{\^{} Episode(?e2) -> inProgress(?s, ?e2)}
+    \end{quote}
+
+\end{itemize}
